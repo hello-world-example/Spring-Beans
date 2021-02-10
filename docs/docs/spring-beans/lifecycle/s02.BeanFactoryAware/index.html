@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BeanFactoryAware // TODO 作用是 让Bean获取配置它们的BeanFactory的引用
+// TODO
+package org.springframework.beans.factory; import org.springframework.beans.BeansException; /** * Interface to be implemented by beans that wish to be aware of their * owning {@link BeanFactory}. * * &lt;p&gt;For example, beans can look up collaborating beans via the factory * (Dependency Lookup). Note that most beans will choose to receive references * to collaborating beans via corresponding bean properties or constructor * arguments (Dependency Injection). * * &lt;p&gt;For a list of all bean lifecycle methods, see the * {@link BeanFactory BeanFactory javadocs}."><meta property="og:title" content="" />
+<meta property="og:description" content="BeanFactoryAware // TODO 作用是 让Bean获取配置它们的BeanFactory的引用
+// TODO
+package org.springframework.beans.factory; import org.springframework.beans.BeansException; /** * Interface to be implemented by beans that wish to be aware of their * owning {@link BeanFactory}. * * &lt;p&gt;For example, beans can look up collaborating beans via the factory * (Dependency Lookup). Note that most beans will choose to receive references * to collaborating beans via corresponding bean properties or constructor * arguments (Dependency Injection). * * &lt;p&gt;For a list of all bean lifecycle methods, see the * {@link BeanFactory BeanFactory javadocs}." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s02.BeanFactoryAware/" />
+
+<title>S02. Bean Factory Aware | Spring-Beans</title>
+<link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Beans/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/Spring-Beans"><span>Spring-Beans</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Lifecycle/">生命周期</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory/">BeanFactory</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory.getBean/">BeanFactory.getBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/">StaticListable<strong>BeanFactory</strong></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/FactoryBean/">FactoryBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/">BeanFactoryPostProcessor</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanPostProcessor/">BeanPostProcessor</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Aware/">Aware</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/InitializingBean/">InitializingBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/DisposableBean/">DisposableBean</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/Spring-Beans/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>S02. Bean Factory Aware</strong>
+
+  <label for="toc-control">
+    <img src="/Spring-Beans/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beanfactoryaware--todo">BeanFactoryAware // TODO</a></li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="beanfactoryaware--todo">BeanFactoryAware // TODO</h1>
+<p>作用是 <strong>让Bean获取配置它们的BeanFactory的引用</strong></p>
+<p>// TODO</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.springframework.beans.factory<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.springframework.beans.BeansException<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Interface to be implemented by beans that wish to be aware of their
+</span><span style="color:#75715e"> * owning {@link BeanFactory}.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;For example, beans can look up collaborating beans via the factory
+</span><span style="color:#75715e"> * (Dependency Lookup). Note that most beans will choose to receive references
+</span><span style="color:#75715e"> * to collaborating beans via corresponding bean properties or constructor
+</span><span style="color:#75715e"> * arguments (Dependency Injection).
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;For a list of all bean lifecycle methods, see the
+</span><span style="color:#75715e"> * {@link BeanFactory BeanFactory javadocs}.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * @see BeanNameAware
+</span><span style="color:#75715e"> * @see BeanClassLoaderAware
+</span><span style="color:#75715e"> * @see InitializingBean
+</span><span style="color:#75715e"> * @see org.springframework.context.ApplicationContextAware
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">BeanFactoryAware</span> <span style="color:#66d9ef">extends</span> Aware <span style="color:#f92672">{</span>
+
+	<span style="color:#75715e">/**
+</span><span style="color:#75715e">	 * Callback that supplies the owning factory to a bean instance.
+</span><span style="color:#75715e">	 * &lt;p&gt;Invoked after the population of normal bean properties
+</span><span style="color:#75715e">	 * but before an initialization callback such as
+</span><span style="color:#75715e">	 * {@link InitializingBean#afterPropertiesSet()} or a custom init-method.
+</span><span style="color:#75715e">	 * @param beanFactory owning BeanFactory (never {@code null}).
+</span><span style="color:#75715e">	 * The bean can immediately call methods on the factory.
+</span><span style="color:#75715e">	 * @throws BeansException in case of initialization errors
+</span><span style="color:#75715e">	 * @see BeanInitializationException
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setBeanFactory</span><span style="color:#f92672">(</span>BeanFactory beanFactory<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> BeansException<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/edit/master/HuGo/content/docs/spring-beans/lifecycle/s02.BeanFactoryAware.md" target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+<script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beanfactoryaware--todo">BeanFactoryAware // TODO</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

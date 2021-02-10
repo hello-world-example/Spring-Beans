@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BeanFactory#getBean 继承关系 Interface  BeanFactory (org.springframework.beans.factory)  HierarchicalBeanFactory (org.springframework.beans.factory)  ConfigurableBeanFactory (org.springframework.beans.factory.config)  AbstractBeanFactory (org.springframework.beans.factory.support)        Class  SimpleAliasRegistry (org.springframework.core)  DefaultSingletonBeanRegistry (org.springframework.beans.factory.support)  FactoryBeanRegistrySupport (org.springframework.beans.factory.support)  AbstractBeanFactory (org.springframework.beans.factory.support)  AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)  DefaultListableBeanFactory (org.springframework.beans.factory.support)  XmlBeanFactory (org.springframework.beans.factory.xml)              getBean 的大部分逻辑由 AbstractBeanFactory 实现，大多 getBean 方式都是 doGetBean 的重载方法。
+AbstractBeanFactory#doGetBean protected &lt;T&gt; T doGetBean(final String name, @Nullable final Class&lt;T&gt; requiredType, @Nullable final Object[] args, boolean typeCheckOnly ) throws BeansException { // 1."><meta property="og:title" content="" />
+<meta property="og:description" content="BeanFactory#getBean 继承关系 Interface  BeanFactory (org.springframework.beans.factory)  HierarchicalBeanFactory (org.springframework.beans.factory)  ConfigurableBeanFactory (org.springframework.beans.factory.config)  AbstractBeanFactory (org.springframework.beans.factory.support)        Class  SimpleAliasRegistry (org.springframework.core)  DefaultSingletonBeanRegistry (org.springframework.beans.factory.support)  FactoryBeanRegistrySupport (org.springframework.beans.factory.support)  AbstractBeanFactory (org.springframework.beans.factory.support)  AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)  DefaultListableBeanFactory (org.springframework.beans.factory.support)  XmlBeanFactory (org.springframework.beans.factory.xml)              getBean 的大部分逻辑由 AbstractBeanFactory 实现，大多 getBean 方式都是 doGetBean 的重载方法。
+AbstractBeanFactory#doGetBean protected &lt;T&gt; T doGetBean(final String name, @Nullable final Class&lt;T&gt; requiredType, @Nullable final Object[] args, boolean typeCheckOnly ) throws BeansException { // 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory.getBean/" />
+
+<title>Bean Factory.get Bean | Spring-Beans</title>
+<link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Beans/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/Spring-Beans"><span>Spring-Beans</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Lifecycle/">生命周期</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory/">BeanFactory</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory.getBean/"class=active>BeanFactory.getBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/">StaticListable<strong>BeanFactory</strong></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/FactoryBean/">FactoryBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/">BeanFactoryPostProcessor</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanPostProcessor/">BeanPostProcessor</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Aware/">Aware</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/InitializingBean/">InitializingBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/DisposableBean/">DisposableBean</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/Spring-Beans/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Bean Factory.get Bean</strong>
+
+  <label for="toc-control">
+    <img src="/Spring-Beans/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beanfactorygetbean">BeanFactory#getBean</a>
+      <ul>
+        <li><a href="#继承关系">继承关系</a>
+          <ul>
+            <li><a href="#interface">Interface</a></li>
+            <li><a href="#class">Class</a></li>
+          </ul>
+        </li>
+        <li><a href="#abstractbeanfactorydogetbean">AbstractBeanFactory#doGetBean</a></li>
+        <li><a href="#defaultsingletonbeanregistrygetsingleton">DefaultSingletonBeanRegistry#getSingleton</a></li>
+        <li><a href="#-abstractautowirecapablebeanfactorycreatebean">❤ AbstractAutowireCapableBeanFactory#createBean</a></li>
+        <li><a href="#-abstractautowirecapablebeanfactorydocreatebean">❤❤ AbstractAutowireCapableBeanFactory#doCreateBean</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="beanfactorygetbean">BeanFactory#getBean</h1>
+<h2 id="继承关系">继承关系</h2>
+<h3 id="interface">Interface</h3>
+<ul>
+<li><code>BeanFactory</code> (org.springframework.beans.factory)
+<ul>
+<li>HierarchicalBeanFactory (org.springframework.beans.factory)
+<ul>
+<li>ConfigurableBeanFactory (org.springframework.beans.factory.config)
+<ul>
+<li><code>AbstractBeanFactory</code> (org.springframework.beans.factory.support)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="class">Class</h3>
+<ul>
+<li>SimpleAliasRegistry (org.springframework.core)
+<ul>
+<li><strong>DefaultSingletonBeanRegistry</strong> (org.springframework.beans.factory.support)
+<ul>
+<li>FactoryBeanRegistrySupport (org.springframework.beans.factory.support)
+<ul>
+<li><strong>AbstractBeanFactory</strong> (org.springframework.beans.factory.support)
+<ul>
+<li><strong>AbstractAutowireCapableBeanFactory</strong> (org.springframework.beans.factory.support)
+<ul>
+<li>DefaultListableBeanFactory (org.springframework.beans.factory.support)
+<ul>
+<li>XmlBeanFactory (org.springframework.beans.factory.xml)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>getBean</code> 的大部分逻辑由 <code>AbstractBeanFactory</code> 实现，大多 <code>getBean</code>  方式都是 <code>doGetBean</code> 的重载方法。</p>
+<h2 id="abstractbeanfactorydogetbean">AbstractBeanFactory#doGetBean</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">protected</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">doGetBean</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String name<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Nullable</span> <span style="color:#66d9ef">final</span> Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> requiredType<span style="color:#f92672">,</span>
+                          <span style="color:#a6e22e">@Nullable</span> <span style="color:#66d9ef">final</span> Object<span style="color:#f92672">[]</span> args<span style="color:#f92672">,</span> <span style="color:#66d9ef">boolean</span> typeCheckOnly
+                       <span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> BeansException <span style="color:#f92672">{</span>
+
+    <span style="color:#75715e">//  1. 去掉 bean  前面的 &amp;  符号，即 FactoryBean  名称转为  真实的 Bean 名称
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  2. 如果名称是别名，则通过别名获取到真实的 Bean 的名称
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> String beanName <span style="color:#f92672">=</span> transformedBeanName<span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>
+    Object bean<span style="color:#f92672">;</span>
+
+  <span style="color:#75715e">// ===========================================================================
+</span><span style="color:#75715e"></span>  
+    <span style="color:#75715e">// Eagerly check singleton cache for manually registered singletons.
+</span><span style="color:#75715e"></span>    Object sharedInstance <span style="color:#f92672">=</span> getSingleton<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>sharedInstance <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> args <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#f92672">...</span> <span style="color:#75715e">// 打印日志 
+</span><span style="color:#75715e"></span>       bean <span style="color:#f92672">=</span> getObjectForBeanInstance<span style="color:#f92672">(</span>sharedInstance<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> beanName<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+     <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// Fail if we&#39;re already creating this bean instance:
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// We&#39;re assumably within a circular reference.
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isPrototypeCurrentlyInCreation<span style="color:#f92672">(</span>beanName<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BeanCurrentlyInCreationException<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+         <span style="color:#f92672">}</span>
+
+        <span style="color:#75715e">// Check if bean definition exists in this factory.
+</span><span style="color:#75715e"></span>        BeanFactory parentBeanFactory <span style="color:#f92672">=</span> getParentBeanFactory<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>parentBeanFactory <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>containsBeanDefinition<span style="color:#f92672">(</span>beanName<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// Not found -&gt; check parent.
+</span><span style="color:#75715e"></span>            String nameToLookup <span style="color:#f92672">=</span> originalBeanName<span style="color:#f92672">(</span>name<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>parentBeanFactory <span style="color:#66d9ef">instanceof</span> AbstractBeanFactory<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#f92672">((</span>AbstractBeanFactory<span style="color:#f92672">)</span> parentBeanFactory<span style="color:#f92672">).</span><span style="color:#a6e22e">doGetBean</span><span style="color:#f92672">(</span>
+                        nameToLookup<span style="color:#f92672">,</span> requiredType<span style="color:#f92672">,</span> args<span style="color:#f92672">,</span> typeCheckOnly<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>args <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">// Delegation to parent with explicit args.
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>T<span style="color:#f92672">)</span> parentBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getBean</span><span style="color:#f92672">(</span>nameToLookup<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>requiredType <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">// No args -&gt; delegate to standard getBean method.
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> parentBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getBean</span><span style="color:#f92672">(</span>nameToLookup<span style="color:#f92672">,</span> requiredType<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>T<span style="color:#f92672">)</span> parentBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getBean</span><span style="color:#f92672">(</span>nameToLookup<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>typeCheckOnly<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            markBeanAsCreated<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+         <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">final</span> RootBeanDefinition mbd <span style="color:#f92672">=</span> getMergedLocalBeanDefinition<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+            checkMergedBeanDefinition<span style="color:#f92672">(</span>mbd<span style="color:#f92672">,</span> beanName<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+
+            <span style="color:#75715e">// Guarantee initialization of beans that the current bean depends on.
+</span><span style="color:#75715e"></span>            String<span style="color:#f92672">[]</span> dependsOn <span style="color:#f92672">=</span> mbd<span style="color:#f92672">.</span><span style="color:#a6e22e">getDependsOn</span><span style="color:#f92672">();</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>dependsOn <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String dep <span style="color:#f92672">:</span> dependsOn<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isDependent<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> dep<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BeanCreationException<span style="color:#f92672">(</span>mbd<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceDescription</span><span style="color:#f92672">(),</span> beanName<span style="color:#f92672">,</span>
+                                <span style="color:#e6db74">&#34;Circular depends-on relationship between &#39;&#34;</span> <span style="color:#f92672">+</span> beanName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39; and &#39;&#34;</span> <span style="color:#f92672">+</span> dep <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#34;</span><span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span>
+                    registerDependentBean<span style="color:#f92672">(</span>dep<span style="color:#f92672">,</span> beanName<span style="color:#f92672">);</span>
+                    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                        getBean<span style="color:#f92672">(</span>dep<span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchBeanDefinitionException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BeanCreationException<span style="color:#f92672">(</span>mbd<span style="color:#f92672">.</span><span style="color:#a6e22e">getResourceDescription</span><span style="color:#f92672">(),</span> beanName<span style="color:#f92672">,</span>
+                                <span style="color:#e6db74">&#34;&#39;&#34;</span> <span style="color:#f92672">+</span> beanName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39; depends on missing bean &#39;&#34;</span> <span style="color:#f92672">+</span> dep <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+
+            <span style="color:#75715e">// Create bean instance.
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mbd<span style="color:#f92672">.</span><span style="color:#a6e22e">isSingleton</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                sharedInstance <span style="color:#f92672">=</span> getSingleton<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                        <span style="color:#66d9ef">return</span> createBean<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> mbd<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>BeansException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        <span style="color:#75715e">// Explicitly remove instance from singleton cache: It might have been put there
+</span><span style="color:#75715e"></span>                        <span style="color:#75715e">// eagerly by the creation process, to allow for circular reference resolution.
+</span><span style="color:#75715e"></span>                        <span style="color:#75715e">// Also remove any beans that received a temporary reference to the bean.
+</span><span style="color:#75715e"></span>                        destroySingleton<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+                        <span style="color:#66d9ef">throw</span> ex<span style="color:#f92672">;</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">});</span>
+                bean <span style="color:#f92672">=</span> getObjectForBeanInstance<span style="color:#f92672">(</span>sharedInstance<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> beanName<span style="color:#f92672">,</span> mbd<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>mbd<span style="color:#f92672">.</span><span style="color:#a6e22e">isPrototype</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">// It&#39;s a prototype -&gt; create a new instance.
+</span><span style="color:#75715e"></span>                Object prototypeInstance <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                    beforePrototypeCreation<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+                    prototypeInstance <span style="color:#f92672">=</span> createBean<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> mbd<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+                    afterPrototypeCreation<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span>
+                bean <span style="color:#f92672">=</span> getObjectForBeanInstance<span style="color:#f92672">(</span>prototypeInstance<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> beanName<span style="color:#f92672">,</span> mbd<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                String scopeName <span style="color:#f92672">=</span> mbd<span style="color:#f92672">.</span><span style="color:#a6e22e">getScope</span><span style="color:#f92672">();</span>
+                <span style="color:#66d9ef">final</span> Scope scope <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scopes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>scopeName<span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>scope <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;No Scope registered for scope name &#39;&#34;</span> <span style="color:#f92672">+</span> scopeName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#34;</span><span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span>
+                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                    Object scopedInstance <span style="color:#f92672">=</span> scope<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                        beforePrototypeCreation<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+                        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+                            <span style="color:#66d9ef">return</span> createBean<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> mbd<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+                        <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+                            afterPrototypeCreation<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+                        <span style="color:#f92672">}</span>
+                    <span style="color:#f92672">});</span>
+                    bean <span style="color:#f92672">=</span> getObjectForBeanInstance<span style="color:#f92672">(</span>scopedInstance<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> beanName<span style="color:#f92672">,</span> mbd<span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IllegalStateException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BeanCreationException<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span>
+                            <span style="color:#e6db74">&#34;Scope &#39;&#34;</span> <span style="color:#f92672">+</span> scopeName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39; is not active for the current thread; consider &#34;</span> <span style="color:#f92672">+</span>
+                                    <span style="color:#e6db74">&#34;defining a scoped proxy for this bean if you intend to refer to it from a singleton&#34;</span><span style="color:#f92672">,</span>
+                            ex<span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>BeansException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            cleanupAfterBeanCreationFailure<span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">throw</span> ex<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+  
+ <span style="color:#75715e">// ===========================================================================
+</span><span style="color:#75715e"></span>  
+    <span style="color:#75715e">// Check if required type matches the type of the actual bean instance.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>requiredType <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>requiredType<span style="color:#f92672">.</span><span style="color:#a6e22e">isInstance</span><span style="color:#f92672">(</span>bean<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            T convertedBean <span style="color:#f92672">=</span> getTypeConverter<span style="color:#f92672">().</span><span style="color:#a6e22e">convertIfNecessary</span><span style="color:#f92672">(</span>bean<span style="color:#f92672">,</span> requiredType<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>convertedBean <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BeanNotOfRequiredTypeException<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> requiredType<span style="color:#f92672">,</span> bean<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">());</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">return</span> convertedBean<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>TypeMismatchException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>logger<span style="color:#f92672">.</span><span style="color:#a6e22e">isTraceEnabled</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                logger<span style="color:#f92672">.</span><span style="color:#a6e22e">trace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Failed to convert bean &#39;&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39; to required type &#39;&#34;</span> <span style="color:#f92672">+</span>
+                        ClassUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">getQualifiedName</span><span style="color:#f92672">(</span>requiredType<span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;&#34;</span><span style="color:#f92672">,</span> ex<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> BeanNotOfRequiredTypeException<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> requiredType<span style="color:#f92672">,</span> bean<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">());</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+  
+ <span style="color:#75715e">// ===========================================================================
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>T<span style="color:#f92672">)</span> bean<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="defaultsingletonbeanregistrygetsingleton">DefaultSingletonBeanRegistry#getSingleton</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">protected</span> Object <span style="color:#a6e22e">getSingleton</span><span style="color:#f92672">(</span>String beanName<span style="color:#f92672">,</span> <span style="color:#66d9ef">boolean</span> allowEarlyReference<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  Object singletonObject <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">singletonObjects</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>singletonObject <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> isSingletonCurrentlyInCreation<span style="color:#f92672">(</span>beanName<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">singletonObjects</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      singletonObject <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">earlySingletonObjects</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>singletonObject <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> allowEarlyReference<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        ObjectFactory<span style="color:#f92672">&lt;?&gt;</span> singletonFactory <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">singletonFactories</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>singletonFactory <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          singletonObject <span style="color:#f92672">=</span> singletonFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getObject</span><span style="color:#f92672">();</span>
+          <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">earlySingletonObjects</span><span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> singletonObject<span style="color:#f92672">);</span>
+          <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">singletonFactories</span><span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">return</span> singletonObject<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="-abstractautowirecapablebeanfactorycreatebean">❤ AbstractAutowireCapableBeanFactory#createBean</h2>
+<h2 id="-abstractautowirecapablebeanfactorydocreatebean">❤❤ AbstractAutowireCapableBeanFactory#doCreateBean</h2>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/edit/master/HuGo/content/docs/spring-beans/BeanFactory.getBean.md" target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+<script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beanfactorygetbean">BeanFactory#getBean</a>
+      <ul>
+        <li><a href="#继承关系">继承关系</a>
+          <ul>
+            <li><a href="#interface">Interface</a></li>
+            <li><a href="#class">Class</a></li>
+          </ul>
+        </li>
+        <li><a href="#abstractbeanfactorydogetbean">AbstractBeanFactory#doGetBean</a></li>
+        <li><a href="#defaultsingletonbeanregistrygetsingleton">DefaultSingletonBeanRegistry#getSingleton</a></li>
+        <li><a href="#-abstractautowirecapablebeanfactorycreatebean">❤ AbstractAutowireCapableBeanFactory#createBean</a></li>
+        <li><a href="#-abstractautowirecapablebeanfactorydocreatebean">❤❤ AbstractAutowireCapableBeanFactory#doCreateBean</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="BeanFactoryPostProcessor 在实例化所有Bean之前会执行 BeanFactoryPostProcessors，实现该接口，可以在 Spring 的 Bean 创建之前，修改 Bean的定义属性 等 // TODO “还有什么功能”
+package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * Allows for custom modification of an application context&#39;s bean definitions, * adapting the bean property values of the context&#39;s underlying bean factory. * * &lt;p&gt;Application contexts can auto-detect BeanFactoryPostProcessor beans in * their bean definitions and apply them before any other beans get created. * * &lt;p&gt;Useful for custom config files targeted at system administrators that * override bean properties configured in the application context."><meta property="og:title" content="" />
+<meta property="og:description" content="BeanFactoryPostProcessor 在实例化所有Bean之前会执行 BeanFactoryPostProcessors，实现该接口，可以在 Spring 的 Bean 创建之前，修改 Bean的定义属性 等 // TODO “还有什么功能”
+package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * Allows for custom modification of an application context&#39;s bean definitions, * adapting the bean property values of the context&#39;s underlying bean factory. * * &lt;p&gt;Application contexts can auto-detect BeanFactoryPostProcessor beans in * their bean definitions and apply them before any other beans get created. * * &lt;p&gt;Useful for custom config files targeted at system administrators that * override bean properties configured in the application context." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/" />
+
+<title>Bean Factory Post Processor | Spring-Beans</title>
+<link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Beans/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/Spring-Beans"><span>Spring-Beans</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Lifecycle/">生命周期</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory/">BeanFactory</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory.getBean/">BeanFactory.getBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/">StaticListable<strong>BeanFactory</strong></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/FactoryBean/">FactoryBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/"class=active>BeanFactoryPostProcessor</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanPostProcessor/">BeanPostProcessor</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Aware/">Aware</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/InitializingBean/">InitializingBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/DisposableBean/">DisposableBean</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/Spring-Beans/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Bean Factory Post Processor</strong>
+
+  <label for="toc-control">
+    <img src="/Spring-Beans/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beanfactorypostprocessor">BeanFactoryPostProcessor</a>
+      <ul>
+        <li><a href="#read-more">Read More</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="beanfactorypostprocessor">BeanFactoryPostProcessor</h1>
+<p>在实例化所有Bean之前会执行 <code>BeanFactoryPostProcessors</code>，实现该接口，可以在 Spring 的 Bean 创建之前，修改 Bean的定义属性 等 // TODO “还有什么功能”</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.springframework.beans.factory.config<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.springframework.beans.BeansException<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Allows for custom modification of an application context&#39;s bean definitions,
+</span><span style="color:#75715e"> * adapting the bean property values of the context&#39;s underlying bean factory.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;Application contexts can auto-detect BeanFactoryPostProcessor beans in
+</span><span style="color:#75715e"> * their bean definitions and apply them before any other beans get created.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;Useful for custom config files targeted at system administrators that
+</span><span style="color:#75715e"> * override bean properties configured in the application context.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;See PropertyResourceConfigurer and its concrete implementations
+</span><span style="color:#75715e"> * for out-of-the-box solutions that address such configuration needs.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;A BeanFactoryPostProcessor may interact with and modify bean
+</span><span style="color:#75715e"> * definitions, but never bean instances. Doing so may cause premature bean
+</span><span style="color:#75715e"> * instantiation, violating the container and causing unintended side-effects.
+</span><span style="color:#75715e"> * If bean instance interaction is required, consider implementing
+</span><span style="color:#75715e"> * {@link BeanPostProcessor} instead.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * @see BeanPostProcessor
+</span><span style="color:#75715e"> * @see PropertyResourceConfigurer
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">BeanFactoryPostProcessor</span> <span style="color:#f92672">{</span>
+
+	<span style="color:#75715e">/**
+</span><span style="color:#75715e">	 * Modify the application context&#39;s internal bean factory after its standard
+</span><span style="color:#75715e">	 * initialization. All bean definitions will have been loaded, but no beans
+</span><span style="color:#75715e">	 * will have been instantiated yet. This allows for overriding or adding
+</span><span style="color:#75715e">	 * properties even to eager-initializing beans.
+</span><span style="color:#75715e">	 * @param beanFactory the bean factory used by the application context
+</span><span style="color:#75715e">	 * @throws org.springframework.beans.BeansException in case of errors
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">postProcessBeanFactory</span><span style="color:#f92672">(</span>ConfigurableListableBeanFactory beanFactory<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> BeansException<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>【注意】<code>BeanFactoryPostProcessor</code> 是在 Spring 容器 加载了 Bean 的定义文件之后，在 Bean 实例化 之前执行的。接口方法的入参是 <code>ConfigurrableListableBeanFactory</code> ，使用该参数，可以获取到相关 Bean 的定义信息，例子：</p>
+<h2 id="read-more">Read More</h2>
+<ul>
+<li>
+  <a href="https://blog.csdn.net/windsunmoon/article/details/44283585">spring之扩展点</a></li>
+<li>
+  <a href="https://blog.csdn.net/qq_17612199/article/details/53115446">Spring的BeanFactoryPostProcessor和BeanPostProcessor接口的区别</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/edit/master/HuGo/content/docs/spring-beans/BeanFactoryPostProcessor.md" target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+<script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beanfactorypostprocessor">BeanFactoryPostProcessor</a>
+      <ul>
+        <li><a href="#read-more">Read More</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

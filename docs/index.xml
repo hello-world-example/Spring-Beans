@@ -1,189 +1,187 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on Template-Hugo</title>
-    <link>https://hello-world-example.github.io/Template-Hugo/</link>
-    <description>Recent content in Introduction on Template-Hugo</description>
+    <title>Spring Beans on Spring-Beans</title>
+    <link>https://hello-world-example.github.io/Spring-Beans/</link>
+    <description>Recent content in Spring Beans on Spring-Beans</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="https://hello-world-example.github.io/Template-Hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hello-world-example.github.io/Spring-Beans/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>With ToC</title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/example/table-of-contents/with-toc/</link>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/_sidebar/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/example/table-of-contents/with-toc/</guid>
-      <description>Caput vino delphine in tamen vias Cognita laeva illo fracta Lorem markdownum pavent auras, surgit nunc cingentibus libet Laomedonque que est. Pastor An arbor filia foedat, ne fugit aliter, per. Helicona illas et callida neptem est Oresitrophos caput, dentibus est venit. Tenet reddite famuli praesentem fortibus, quaeque vis foret si frondes gelidos gravidae circumtulit inpulit armenta nativum.
- Te at cruciabere vides rubentis manebo Maturuit in praetemptat ruborem ignara postquam habitasse Subitarum supplevit quoque fontesque venabula spretis modo Montis tot est mali quasque gravis Quinquennem domus arsit ipse Pellem turis pugnabant locavit  Natus quaerere Pectora et sine mulcere, coniuge dum tincta incurvae.</description>
-    </item>
-    
-    <item>
-      <title>Without ToC</title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/example/table-of-contents/without-toc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/example/table-of-contents/without-toc/</guid>
-      <description>At me ipso nepotibus nunc celebratior genus Tanto oblite Lorem markdownum pectora novis patenti igne sua opus aurae feras materiaque illic demersit imago et aristas questaque posset. Vomit quoque suo inhaesuro clara. Esse cumque, per referri triste. Ut exponit solisque communis in tendens vincetis agisque iamque huic bene ante vetat omina Thebae rates. Aeacus servat admonitu concidit, ad resimas vultus et rugas vultu dignamque Siphnon.
-Quam iugulum regia simulacra, plus meruit humo pecorumque haesit, ab discedunt dixit: ritu pharetramque.</description>
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>https://hello-world-example.github.io/Template-Hugo/posts/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Template-Hugo/posts/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>https://hello-world-example.github.io/Template-Hugo/posts/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Template-Hugo/posts/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
-▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>https://hello-world-example.github.io/Template-Hugo/posts/goisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Template-Hugo/posts/goisforlovers/</guid>
-      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
-This document is a brief primer on using Go templates.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>https://hello-world-example.github.io/Template-Hugo/posts/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://hello-world-example.github.io/Template-Hugo/posts/hugoisforlovers/</guid>
-      <description>Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at Install Hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
- Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/_sidebar/</guid>
+      <description>  生命周期  BeanFactory   BeanFactory.getBean  StaticListableBeanFactory      FactoryBean  BeanFactoryPostProcessor  BeanPostProcessor   Aware  InitializingBean  DisposableBean    </description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/_sidebar/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___AnnotatedBeanDefinition/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/_sidebar/</guid>
-      <description>   Example Site
-   Table of Contents
-  With ToC  Without ToC     Collapsed
-  3rd   4th       Shortcodes
-   Buttons
-   Columns
-   Expand
-   Hints
-   Katex
-   Mermaid
-   Tabs   </description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___AnnotatedBeanDefinition/</guid>
+      <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/example/collapsed/3rd-level/4th-level/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___BeanDefinition/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/example/collapsed/3rd-level/4th-level/</guid>
-      <description>4th Level of Menu Caesorum illa tu sentit micat vestes papyriferi Inde aderam facti; Theseus vis de tauri illa peream. Oculos uberaque non regisque vobis cursuque, opus venit quam vulnera. Et maiora necemque, lege modo; gestanda nitidi, vero? Dum ne pectoraque testantur.
-Venasque repulsa Samos qui, exspectatum eram animosque hinc, aut manes, Assyrii. Cupiens auctoribus pariter rubet, profana magni super nocens. Vos ius sibilat inpar turba visae iusto! Sedes ante dum superest extrema.</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___BeanDefinition/</guid>
+      <description>BeanDefinition  BeanDefinition  AnnotatedBeanDefinition  ScannedGenericBeanDefinition == AnnotatedGenericBeanDefinition ==   AbstractBeanDefinition  RootBeanDefinition ChildBeanDefinition GenericBeanDefinition  ScannedGenericBeanDefinition == AnnotatedGenericBeanDefinition ==        </description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/example/hidden/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___DefaultSingletonBeanRegistry/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/example/hidden/</guid>
-      <description>This page is hidden in menu Quondam non pater est dignior ille Eurotas Latent te facies Lorem markdownum arma ignoscas vocavit quoque ille texit mandata mentis ultimus, frementes, qui in vel. Hippotades Peleus pennas conscia cuiquam Caeneus quas.
- Pater demittere evincitque reddunt Maxime adhuc pressit huc Danaas quid freta Soror ego Luctus linguam saxa ultroque prior Tatiumque inquit Saepe liquitur subita superata dederat Anius sudor  Cum honorum Latona O fallor in sustinui iussorum equidem.</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___DefaultSingletonBeanRegistry/</guid>
+      <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/buttons/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Aware/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/buttons/</guid>
-      <description>Buttons Buttons are styled links that can lead to local page or external link.
-Example {{&amp;lt; button relref=&amp;#34;/&amp;#34; [class=&amp;#34;...&amp;#34;] &amp;gt;}}Get Home{{&amp;lt; /button &amp;gt;}} {{&amp;lt; button href=&amp;#34;https://github.com/alex-shpak/hugo-book&amp;#34; &amp;gt;}}Contribute{{&amp;lt; /button &amp;gt;}}  Get Home  Contribute  </description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Aware/</guid>
+      <description>beans.factory.Aware Aware 是一个标记接口，没有任何方法签名，在 Bean 的声明周期中，通过 BeanPostProcessor 给 Bean 传入声明周期过程中的对象
+/** * @link org.springframework.beans.factory.config.BeanPostProcessor * @link org.springframework.context.support.ApplicationContextAwareProcessor * @since 3.1 */ public interface Aware { } 常用 Aware 简介 context.support.ApplicationContextAwareProcessor ApplicationContextAwareProcessor 处理以下 Aware
+ EnvironmentAware ： 设置 Environment （ConfigurableEnvironment） EmbeddedValueResolverAware ： 设置 StringValueResolver（EmbeddedValueResolver） ResourceLoaderAware ： 设置 ResourceLoaderAware（ConfigurableApplicationContext） ApplicationEventPublisherAware ： 设置 ApplicationEventPublisher（ConfigurableApplicationContext） MessageSourceAware ： 设置 MessageSourceAware（ConfigurableApplicationContext） ApplicationContextAware ： 设置 ApplicationContext（ConfigurableApplicationContext）  private void invokeAwareInterfaces(Object bean) { // env 和 系统属性  if (bean instanceof EnvironmentAware) { ((EnvironmentAware) bean).</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/columns/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory.getBean/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/columns/</guid>
-      <description>Columns Columns help organize shorter pieces of content horizontally for readability.
-{{&amp;lt; columns &amp;gt;}} &amp;lt;!-- begin columns block --&amp;gt; # Left Content Lorem markdownum insigne... &amp;lt;---&amp;gt; &amp;lt;!-- magic sparator, between columns --&amp;gt; # Mid Content Lorem markdownum insigne... &amp;lt;---&amp;gt; &amp;lt;!-- magic sparator, between columns --&amp;gt; # Right Content Lorem markdownum insigne... {{&amp;lt; /columns &amp;gt;}} Example Left Content Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter!</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory.getBean/</guid>
+      <description>BeanFactory#getBean 继承关系 Interface  BeanFactory (org.springframework.beans.factory)  HierarchicalBeanFactory (org.springframework.beans.factory)  ConfigurableBeanFactory (org.springframework.beans.factory.config)  AbstractBeanFactory (org.springframework.beans.factory.support)        Class  SimpleAliasRegistry (org.springframework.core)  DefaultSingletonBeanRegistry (org.springframework.beans.factory.support)  FactoryBeanRegistrySupport (org.springframework.beans.factory.support)  AbstractBeanFactory (org.springframework.beans.factory.support)  AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)  DefaultListableBeanFactory (org.springframework.beans.factory.support)  XmlBeanFactory (org.springframework.beans.factory.xml)              getBean 的大部分逻辑由 AbstractBeanFactory 实现，大多 getBean 方式都是 doGetBean 的重载方法。
+AbstractBeanFactory#doGetBean protected &amp;lt;T&amp;gt; T doGetBean(final String name, @Nullable final Class&amp;lt;T&amp;gt; requiredType, @Nullable final Object[] args, boolean typeCheckOnly ) throws BeansException { // 1.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/expand/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/expand/</guid>
-      <description>Expand Expand shortcode can help to decrease clutter on screen by hiding part of text. Expand content by clicking on it.
-Example Default {{&amp;lt; expand &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}  Expand ↕  Markdown content Lorem markdownum insigne&amp;hellip;    With Custom Label {{&amp;lt; expand &amp;#34;Custom Label&amp;#34; &amp;#34;...&amp;#34; &amp;gt;}} ## Markdown content Lorem markdownum insigne... {{&amp;lt; /expand &amp;gt;}}  Custom Label ...  Markdown content Lorem markdownum insigne.</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory/</guid>
+      <description>BeanFactory BeanFactory 是个 工厂，也就是 IOC 容器 或 对象工厂 ，所有的 Bean 都是由 BeanFactory( 也就是 IOC 容器 ) 来进行管理。
+BeanFactory定义了 IOC 容器的最基本形式，并提供了 IOC 容器应遵守的的最基本的接口，也就是 Spring IOC 所遵守的最底层和最基本的编程规范。
+public interface BeanFactory { // FactoryBean前缀  String FACTORY_BEAN_PREFIX = &amp;#34;&amp;amp;&amp;#34;; // 根据名称获取Bean对象  Object getBean(String name) throws BeansException; // 根据名称、类型获取Bean对象  &amp;lt;T&amp;gt; T getBean(String name, Class&amp;lt;T&amp;gt; requiredType) throws BeansException; // 根据类型获取Bean对象  &amp;lt;T&amp;gt; T getBean(Class&amp;lt;T&amp;gt; requiredType) throws BeansException; // 根据名称获取Bean对象,带参数  Object getBean(String name, Object.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/hints/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/hints/</guid>
-      <description>Hints Hint shortcode can be used as hint/alerts/notification block.
-There are 3 colors to choose: info, warning and danger.
-{{&amp;lt; hint [info|warning|danger] &amp;gt;}} **Markdown content** Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa {{&amp;lt; /hint &amp;gt;}} Example Markdown content
-Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter! Oculis non ritibus Telethusa  Markdown content</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/</guid>
+      <description>BeanFactoryPostProcessor 在实例化所有Bean之前会执行 BeanFactoryPostProcessors，实现该接口，可以在 Spring 的 Bean 创建之前，修改 Bean的定义属性 等 // TODO “还有什么功能”
+package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * Allows for custom modification of an application context&amp;#39;s bean definitions, * adapting the bean property values of the context&amp;#39;s underlying bean factory. * * &amp;lt;p&amp;gt;Application contexts can auto-detect BeanFactoryPostProcessor beans in * their bean definitions and apply them before any other beans get created. * * &amp;lt;p&amp;gt;Useful for custom config files targeted at system administrators that * override bean properties configured in the application context.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/katex/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanPostProcessor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/katex/</guid>
-      <description>KaTeX KaTeX shortcode let you render math typesetting in markdown document. See KaTeX
-Example {{&amp;lt; katex [display] [class=&amp;#34;text-center&amp;#34;] &amp;gt;}} x = \begin{cases} a &amp;amp;\text{if } b \\ c &amp;amp;\text{if } d \end{cases} {{&amp;lt; /katex &amp;gt;}}     \( x = \begin{cases} a &amp;\text{if } b \\ c &amp;\text{if } d \end{cases} \)    Display Mode Example Here is some inline example: \(\pi(x)\)  , rendered in the same line.</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanPostProcessor/</guid>
+      <description>BeanPostProcessor BeanPostProcessor 提供对bean实例的操作扩展，在 Spring容器 对 bean实例化 和 设置依赖 之后，其回调开始执行。BeanPostProcessor 接口定义的两个方法，分别在 bean的初始化方法执行的前后执行（ InitializingBean 接口，或者 init-method 定义的方法）：
+package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * 用来自定义创建的 Bean，如：检查 Bean 的注解 或 用代理类进行包装 等 * * postProcessBeforeInitialization 一般用来检查bean的注解 或者 填充 bean * postProcessAfterInitialization 一般用来代理类来包装 bean * * @see InstantiationAwareBeanPostProcessor * @see DestructionAwareBeanPostProcessor * @see ConfigurableBeanFactory#addBeanPostProcessor * @see BeanFactoryPostProcessor */ public interface BeanPostProcessor { /** * 在bean的初始化方法执行 前 执行 * * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet */ Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException; /** * 在bean的初始化方法执行 后 执行 * * @see org.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/mermaid/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/DisposableBean/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/mermaid/</guid>
-      <description>Mermaid Chart  Mermaid is library for generating svg charts and diagrams from text.
-Example {{&amp;lt; mermaid [class=&amp;#34;text-center&amp;#34;]&amp;gt;}} sequenceDiagram Alice-&amp;gt;&amp;gt;Bob: Hello Bob, how are you? alt is sick Bob-&amp;gt;&amp;gt;Alice: Not so good :( else is well Bob-&amp;gt;&amp;gt;Alice: Feeling fresh like a daisy end opt Extra response Bob-&amp;gt;&amp;gt;Alice: Thanks for asking end {{&amp;lt; /mermaid &amp;gt;}}    sequenceDiagram Alice-Bob: Hello Bob, how are you? alt is sick Bob-Alice: Not so good :( else is well Bob-Alice: Feeling fresh like a daisy end opt Extra response Bob-Alice: Thanks for asking end   </description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/DisposableBean/</guid>
+      <description>DisposableBean // TODO 定义在 spring 容器 销毁前 所做的操作方式 常见有三种：
+ @PreDestroy 注解 在 xml 中 bean 标签 配置 destory-method 属性 指定销毁方法 Bean 实现 DisposableBean 接口  </description>
     </item>
     
     <item>
       <title></title>
-      <link>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/tabs/</link>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/FactoryBean/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hello-world-example.github.io/Template-Hugo/docs/shortcodes/tabs/</guid>
-      <description>Tabs Tabs let you organize content by context, for example installation instructions for each supported platform.
-{{&amp;lt; tabs &amp;#34;uniqueid&amp;#34; &amp;gt;}} {{&amp;lt; tab &amp;#34;MacOS&amp;#34; &amp;gt;}} # MacOS Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;#34;Linux&amp;#34; &amp;gt;}} # Linux Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; tab &amp;#34;Windows&amp;#34; &amp;gt;}} # Windows Content {{&amp;lt; /tab &amp;gt;}} {{&amp;lt; /tabs &amp;gt;}} Example MacOS MacOS This is tab MacOS content.
-Lorem markdownum insigne. Olympo signis Delphis! Retexi Nereius nova develat stringit, frustra Saturnius uteroque inter!</description>
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/FactoryBean/</guid>
+      <description>FactoryBean FactoryBean 是一个 Bean，但不是一个简单的Bean，是一个能生产对象的 Bean 😓
+接口如下：
+package org.springframework.beans.factory; public interface FactoryBean&amp;lt;T&amp;gt; { // FactoryBean 创建的 Bean 实例  T getObject() throws Exception; // 返回 FactoryBean 创建的 Bean 类型  Class&amp;lt;?&amp;gt; getObjectType(); // 返回由 FactoryBean 创建的 Bean 实例的作用域是 singleton 还是 prototype  boolean isSingleton(); } 使用示例 User.java package xyz.kail.blog.spring; public class User { public String name; } UserFactoryBean.java package xyz.kail.blog.spring; import org.springframework.beans.factory.FactoryBean; import org.springframework.stereotype.Component; @Component(&amp;#34;user&amp;#34;) public class UserFactoryBean implements FactoryBean&amp;lt;User&amp;gt; { @Override public User getObject() throws Exception { User user = new User(); user.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/InitializingBean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/InitializingBean/</guid>
+      <description>InitializingBean // TODO 定义在 spring Bean 初始化后 所做的操作方式 常见有三种：
+ @PostConstruct 注解 Bean 实现 InitializingBean 接口 在 xml 中 bean 标签 配置 init-method 属性 指定初始化方法  package org.springframework.beans.factory; /** * Interface to be implemented by beans that need to react once all their * properties have been set by a BeanFactory: for example, to perform custom * initialization, or merely to check that all mandatory properties have been set. * * &amp;lt;p&amp;gt;An alternative to implementing InitializingBean is specifying a custom * init-method, for example in an XML bean definition.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/</guid>
+      <description>Bean 的生命周期  译自 —— Spring Bean Life Cycle
+ Bean 的生命周期是 Spring 最重要的特性之一。
+在许多应用中，必须在初始化bean之前执行一些操作，并且在容器销毁 bean 之前执行一些清理操作。
+在 Java 中 对象的生命周期 由 new 关键字开始。当我们使用 new 创建一个对象时，它会根据类的层析结构调用一系列的构造函数，最后使对象可用。当这个对象没有任何引用时，它将被垃圾收集。 这是Java中对象的生命周期。
+但在 Spring 中 Bean 的生命周期还有很多事情要做。下面展示的是 Spring Bean 的生命周期图：
+  Spring容器在 xml配置文件中(注解扫描、配置Bean 等) 查找bean的定义 通过调用 Class 的默认 无参数构造函数 来实例化 Bean；如果类中只有参数化构造函数，则必须在使用构造函数注入定义bean，否则将抛出bean创建异常。 Spring 将 值 或者 引用 注入到 Bean 的实例中 如果 Bean 实现 BeanNameAware 接口，Spring 会将 bean的ID 传递给 setBeanName() 方法并执行此方法。 如果 Bean 实现 BeanFactoryAware 接口，Spring 将会调用 setBeanFactory() 方法，传入 Bean 工厂 BeanFactory 的实例 如果 Bean 实现 ApplicationContextAware  接口，Spring 将会调用 setApplicationContext() 方法，创建当前应用上下问的引用 ApplicationContext 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessBeforeInitialization() 方法；@PostConstruct 注解的方法也会在这一步执行 如果 Bean 实现 InitializingBean 接口，Spring 将会 在设置完 Bean 的所有属性后 调用 afterPropertiesSet() 方法；类似地，如果使用 init-method 方法声明bean，则将调用指定的初始化方法 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessAfterInitialization() 方法， 此时，bean已准备好由应用程序使用，并将保留在应用程序上下文中，直到销毁应用程序上下文。 如果 Bean 实现 DisposableBean 接口，Spring 将会在容器销毁的时候 调用 destroy() 方法；同样，如果使用 destroy-method 声明任何bean，则将调用指定的方法。  生命周期之前  容器启动时最先调用 org.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s01.BeanNameAware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s01.BeanNameAware/</guid>
+      <description>BeanNameAware 作用是 让Bean获取自己在BeanFactory中的 ID/Name。
+Spring 会在完成 Bean 属性设置之后自动调用 setBeanName() 方法，且在调用 Bean 生命周期回调方法之前就调用这个方法。
+package org.springframework.beans.factory; /** * @see BeanClassLoaderAware * @see BeanFactoryAware * @see InitializingBean */ public interface BeanNameAware extends Aware { void setBeanName(String name); } 常见的实现：
+@Override public void setBeanName(String beanName) { this.beanName = StringUtils.trimAllWhitespace(BeanFactoryUtils.originalBeanName(beanName)); } </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s02.BeanFactoryAware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s02.BeanFactoryAware/</guid>
+      <description>BeanFactoryAware // TODO 作用是 让Bean获取配置它们的BeanFactory的引用
+// TODO
+package org.springframework.beans.factory; import org.springframework.beans.BeansException; /** * Interface to be implemented by beans that wish to be aware of their * owning {@link BeanFactory}. * * &amp;lt;p&amp;gt;For example, beans can look up collaborating beans via the factory * (Dependency Lookup). Note that most beans will choose to receive references * to collaborating beans via corresponding bean properties or constructor * arguments (Dependency Injection). * * &amp;lt;p&amp;gt;For a list of all bean lifecycle methods, see the * {@link BeanFactory BeanFactory javadocs}.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s03.ApplicationContextAware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s03.ApplicationContextAware/</guid>
+      <description>// TODO</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/</guid>
+      <description>StaticListableBeanFactory BeanFactory 的最简单的实现类，仅仅是一个 Bean 的容器，继承关系简单，可以用来理解 BeanFactory。
+ BeanFactory (org.springframework.beans.factory)  ListableBeanFactory (org.springframework.beans.factory)  StaticListableBeanFactory (org.springframework.beans.factory.support)      Read More   StaticListableBeanFactory 分析  </description>
     </item>
     
   </channel>

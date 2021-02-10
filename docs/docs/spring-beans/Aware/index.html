@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="beans.factory.Aware Aware 是一个标记接口，没有任何方法签名，在 Bean 的声明周期中，通过 BeanPostProcessor 给 Bean 传入声明周期过程中的对象
+/** * @link org.springframework.beans.factory.config.BeanPostProcessor * @link org.springframework.context.support.ApplicationContextAwareProcessor * @since 3.1 */ public interface Aware { } 常用 Aware 简介 context.support.ApplicationContextAwareProcessor ApplicationContextAwareProcessor 处理以下 Aware
+ EnvironmentAware ： 设置 Environment （ConfigurableEnvironment） EmbeddedValueResolverAware ： 设置 StringValueResolver（EmbeddedValueResolver） ResourceLoaderAware ： 设置 ResourceLoaderAware（ConfigurableApplicationContext） ApplicationEventPublisherAware ： 设置 ApplicationEventPublisher（ConfigurableApplicationContext） MessageSourceAware ： 设置 MessageSourceAware（ConfigurableApplicationContext） ApplicationContextAware ： 设置 ApplicationContext（ConfigurableApplicationContext）  private void invokeAwareInterfaces(Object bean) { // env 和 系统属性  if (bean instanceof EnvironmentAware) { ((EnvironmentAware) bean)."><meta property="og:title" content="" />
+<meta property="og:description" content="beans.factory.Aware Aware 是一个标记接口，没有任何方法签名，在 Bean 的声明周期中，通过 BeanPostProcessor 给 Bean 传入声明周期过程中的对象
+/** * @link org.springframework.beans.factory.config.BeanPostProcessor * @link org.springframework.context.support.ApplicationContextAwareProcessor * @since 3.1 */ public interface Aware { } 常用 Aware 简介 context.support.ApplicationContextAwareProcessor ApplicationContextAwareProcessor 处理以下 Aware
+ EnvironmentAware ： 设置 Environment （ConfigurableEnvironment） EmbeddedValueResolverAware ： 设置 StringValueResolver（EmbeddedValueResolver） ResourceLoaderAware ： 设置 ResourceLoaderAware（ConfigurableApplicationContext） ApplicationEventPublisherAware ： 设置 ApplicationEventPublisher（ConfigurableApplicationContext） MessageSourceAware ： 设置 MessageSourceAware（ConfigurableApplicationContext） ApplicationContextAware ： 设置 ApplicationContext（ConfigurableApplicationContext）  private void invokeAwareInterfaces(Object bean) { // env 和 系统属性  if (bean instanceof EnvironmentAware) { ((EnvironmentAware) bean)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Aware/" />
+
+<title>Aware | Spring-Beans</title>
+<link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Beans/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/Spring-Beans"><span>Spring-Beans</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Lifecycle/">生命周期</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory/">BeanFactory</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory.getBean/">BeanFactory.getBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/">StaticListable<strong>BeanFactory</strong></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/FactoryBean/">FactoryBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/">BeanFactoryPostProcessor</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanPostProcessor/">BeanPostProcessor</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Aware/"class=active>Aware</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/InitializingBean/">InitializingBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/DisposableBean/">DisposableBean</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/Spring-Beans/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Aware</strong>
+
+  <label for="toc-control">
+    <img src="/Spring-Beans/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beansfactoryaware">beans.factory.Aware</a>
+      <ul>
+        <li><a href="#常用-aware-简介">常用 Aware 简介</a>
+          <ul>
+            <li><a href="#contextsupportapplicationcontextawareprocessor">context.support.ApplicationContextAwareProcessor</a></li>
+            <li><a href="#factorysupportabstractautowirecapablebeanfactory">factory.support.AbstractAutowireCapableBeanFactory</a></li>
+            <li><a href="#since-31-contextannotationimportaware">@since 3.1 context.annotation.ImportAware</a></li>
+            <li><a href="#webcontextsupportservletcontextawareprocessor">web.context.support.ServletContextAwareProcessor</a></li>
+          </ul>
+        </li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="beansfactoryaware">beans.factory.Aware</h1>
+<p><code>Aware</code> 是一个标记接口，没有任何方法签名，在 Bean 的声明周期中，通过 <code>BeanPostProcessor</code> 给 Bean 传入声明周期过程中的对象</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * @link org.springframework.beans.factory.config.BeanPostProcessor
+</span><span style="color:#75715e"> * @link org.springframework.context.support.ApplicationContextAwareProcessor
+</span><span style="color:#75715e"> * @since 3.1
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Aware</span> <span style="color:#f92672">{</span> <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="常用-aware-简介">常用 Aware 简介</h2>
+<h3 id="contextsupportapplicationcontextawareprocessor">context.support.ApplicationContextAwareProcessor</h3>
+<p><code>ApplicationContextAwareProcessor</code> 处理以下 <code>Aware</code></p>
+<ul>
+<li><code>EnvironmentAware</code> ： 设置 <strong><code>Environment</code></strong> （<code>ConfigurableEnvironment</code>）</li>
+<li><code>EmbeddedValueResolverAware</code> ： 设置 <code>StringValueResolver</code>（<code>EmbeddedValueResolver</code>）</li>
+<li><code>ResourceLoaderAware</code> ： 设置 <code>ResourceLoaderAware</code>（<code>ConfigurableApplicationContext</code>）</li>
+<li><strong><code>ApplicationEventPublisherAware</code></strong> ： 设置 <strong><code>ApplicationEventPublisher</code></strong>（<code>ConfigurableApplicationContext</code>）</li>
+<li><code>MessageSourceAware</code> ： 设置 <code>MessageSourceAware</code>（<code>ConfigurableApplicationContext</code>）</li>
+<li><strong><code>ApplicationContextAware</code></strong> ： 设置 <strong><code>ApplicationContext</code></strong>（<code>ConfigurableApplicationContext</code>）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">invokeAwareInterfaces</span><span style="color:#f92672">(</span>Object bean<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// env 和 系统属性
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> EnvironmentAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>EnvironmentAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setEnvironment</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">applicationContext</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getEnvironment</span><span style="color:#f92672">());</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#75715e">// 属性解析器
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> EmbeddedValueResolverAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>EmbeddedValueResolverAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setEmbeddedValueResolver</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">embeddedValueResolver</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#75715e">// Bean 的 资源扫描器 
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> ResourceLoaderAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>ResourceLoaderAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setResourceLoader</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">applicationContext</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#75715e">// 事件发布
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> ApplicationEventPublisherAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>ApplicationEventPublisherAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setApplicationEventPublisher</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">applicationContext</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#75715e">// 国际化
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> MessageSourceAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>MessageSourceAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setMessageSource</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">applicationContext</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#75715e">// 容器
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> ApplicationContextAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>ApplicationContextAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setApplicationContext</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">applicationContext</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="factorysupportabstractautowirecapablebeanfactory">factory.support.AbstractAutowireCapableBeanFactory</h3>
+<ul>
+<li><code>BeanNameAware</code></li>
+<li><code>BeanClassLoaderAware</code></li>
+<li><code>BeanFactoryAware</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">protected</span> Object <span style="color:#a6e22e">initializeBean</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String beanName<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> Object bean<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Nullable</span> RootBeanDefinition mbd<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#f92672">...</span> 
+    <span style="color:#75715e">// 调用 
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// BeanNameAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// BeanClassLoaderAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// BeanFactoryAware
+</span><span style="color:#75715e"></span>    invokeAwareMethods<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> bean<span style="color:#f92672">);</span>
+  <span style="color:#f92672">...</span>
+    <span style="color:#75715e">// BeanPostProcessor 的 postProcessBeforeInitialization 方法
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// ❤❤❤ context.support.ApplicationContextAwareProcessor 也在这一步被调用
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// EnvironmentAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// EmbeddedValueResolverAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// ResourceLoaderAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// ApplicationEventPublisherAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// MessageSourceAware
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// ApplicationContextAware
+</span><span style="color:#75715e"></span>    wrappedBean <span style="color:#f92672">=</span> applyBeanPostProcessorsBeforeInitialization<span style="color:#f92672">(</span>wrappedBean<span style="color:#f92672">,</span> beanName<span style="color:#f92672">);</span>
+  <span style="color:#f92672">...</span>
+    <span style="color:#75715e">// InitializingBean 的 afterPropertiesSet 方法
+</span><span style="color:#75715e"></span>    invokeInitMethods<span style="color:#f92672">(</span>beanName<span style="color:#f92672">,</span> wrappedBean<span style="color:#f92672">,</span> mbd<span style="color:#f92672">);</span>
+  <span style="color:#f92672">...</span>
+    <span style="color:#75715e">// BeanPostProcessor 的 postProcessAfterInitialization 方法
+</span><span style="color:#75715e"></span>    wrappedBean <span style="color:#f92672">=</span> applyBeanPostProcessorsAfterInitialization<span style="color:#f92672">(</span>wrappedBean<span style="color:#f92672">,</span> beanName<span style="color:#f92672">);</span>
+  <span style="color:#f92672">...</span>
+  <span style="color:#66d9ef">return</span> wrappedBean<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">invokeAwareMethods</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String beanName<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> Object bean<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> Aware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 设置 Bean 的名称
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> BeanNameAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#f92672">((</span>BeanNameAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setBeanName</span><span style="color:#f92672">(</span>beanName<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 设置加载 Bean 的 ClassLoader
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> BeanClassLoaderAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      ClassLoader bcl <span style="color:#f92672">=</span> getBeanClassLoader<span style="color:#f92672">();</span>
+      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bcl <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#f92672">((</span>BeanClassLoaderAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setBeanClassLoader</span><span style="color:#f92672">(</span>bcl<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 设置 BeanFactory（ AbstractAutowireCapableBeanFactory ）
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>bean <span style="color:#66d9ef">instanceof</span> BeanFactoryAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#f92672">((</span>BeanFactoryAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setBeanFactory</span><span style="color:#f92672">(</span>AbstractAutowireCapableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">this</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="since-31-contextannotationimportaware">@since 3.1 context.annotation.ImportAware</h3>
+<p><code>ImportAware</code> 常与 <code>@Configuration</code> 、 <code>@Import</code> 配合使用，获取指定注解信息，根据注解的配置设置 Bean。</p>
+<h4 id="enableasync-示例">@EnableAsync 示例</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AbstractAsyncConfiguration</span> <span style="color:#66d9ef">implements</span> ImportAware <span style="color:#f92672">{</span>
+
+  <span style="color:#a6e22e">@Nullable</span>
+  <span style="color:#66d9ef">protected</span> AnnotationAttributes enableAsync<span style="color:#f92672">;</span>
+
+  <span style="color:#f92672">...</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setImportMetadata</span><span style="color:#f92672">(</span>AnnotationMetadata importMetadata<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">enableAsync</span> <span style="color:#f92672">=</span> AnnotationAttributes<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMap</span><span style="color:#f92672">(</span> importMetadata<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnotationAttributes</span><span style="color:#f92672">(</span>EnableAsync<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(),</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">));</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">enableAsync</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span> <span style="color:#e6db74">&#34;@EnableAsync is not present on importing class &#34;</span> <span style="color:#f92672">+</span> importMetadata<span style="color:#f92672">.</span><span style="color:#a6e22e">getClassName</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#f92672">...</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#a6e22e">@Configuration</span>
+<span style="color:#a6e22e">@Role</span><span style="color:#f92672">(</span>BeanDefinition<span style="color:#f92672">.</span><span style="color:#a6e22e">ROLE_INFRASTRUCTURE</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProxyAsyncConfiguration</span> <span style="color:#66d9ef">extends</span> AbstractAsyncConfiguration <span style="color:#f92672">{</span>
+
+  <span style="color:#a6e22e">@Bean</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> TaskManagementConfigUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">ASYNC_ANNOTATION_PROCESSOR_BEAN_NAME</span><span style="color:#f92672">)</span>
+  <span style="color:#a6e22e">@Role</span><span style="color:#f92672">(</span>BeanDefinition<span style="color:#f92672">.</span><span style="color:#a6e22e">ROLE_INFRASTRUCTURE</span><span style="color:#f92672">)</span>
+  <span style="color:#66d9ef">public</span> AsyncAnnotationBeanPostProcessor <span style="color:#a6e22e">asyncAdvisor</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    Assert<span style="color:#f92672">.</span><span style="color:#a6e22e">notNull</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">enableAsync</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;@EnableAsync annotation metadata was not injected&#34;</span><span style="color:#f92672">);</span>
+    AsyncAnnotationBeanPostProcessor bpp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AsyncAnnotationBeanPostProcessor<span style="color:#f92672">();</span>
+    bpp<span style="color:#f92672">.</span><span style="color:#a6e22e">configure</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">executor</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">exceptionHandler</span><span style="color:#f92672">);</span>
+    Class<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> Annotation<span style="color:#f92672">&gt;</span> customAsyncAnnotation <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">enableAsync</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;annotation&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>customAsyncAnnotation <span style="color:#f92672">!=</span> AnnotationUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefaultValue</span><span style="color:#f92672">(</span>EnableAsync<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;annotation&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+      bpp<span style="color:#f92672">.</span><span style="color:#a6e22e">setAsyncAnnotationType</span><span style="color:#f92672">(</span>customAsyncAnnotation<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// 获取注解中的配置
+</span><span style="color:#75715e"></span>    bpp<span style="color:#f92672">.</span><span style="color:#a6e22e">setProxyTargetClass</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">enableAsync</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBoolean</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;proxyTargetClass&#34;</span><span style="color:#f92672">));</span>
+    bpp<span style="color:#f92672">.</span><span style="color:#a6e22e">setOrder</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">enableAsync</span><span style="color:#f92672">.&lt;</span>Integer<span style="color:#f92672">&gt;</span>getNumber<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;order&#34;</span><span style="color:#f92672">));</span>
+    <span style="color:#66d9ef">return</span> bpp<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="使用示例">使用示例</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@EnableAsync</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+    AnnotationMetadata introspect <span style="color:#f92672">=</span> AnnotationMetadata<span style="color:#f92672">.</span><span style="color:#a6e22e">introspect</span><span style="color:#f92672">(</span>Main<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Object<span style="color:#f92672">&gt;</span> annotationAttributes <span style="color:#f92672">=</span> introspect<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnotationAttributes</span><span style="color:#f92672">(</span>EnableAsync<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>annotationAttributes<span style="color:#f92672">);</span>
+
+    AnnotationAttributes attributes <span style="color:#f92672">=</span> AnnotationAttributes<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMap</span><span style="color:#f92672">(</span>annotationAttributes<span style="color:#f92672">);</span>
+    Number order <span style="color:#f92672">=</span> attributes<span style="color:#f92672">.</span><span style="color:#a6e22e">getNumber</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;order&#34;</span><span style="color:#f92672">);</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>order<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h3 id="webcontextsupportservletcontextawareprocessor">web.context.support.ServletContextAwareProcessor</h3>
+<ul>
+<li><code>ServletContextAware</code></li>
+<li><code>ServletConfigAware</code></li>
+</ul>
+<p>这两对象搭配使用，可以基于 Servlet 变成，注册 Servlet、Filter 等</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+<span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">postProcessBeforeInitialization</span><span style="color:#f92672">(</span>Object bean<span style="color:#f92672">,</span> String beanName<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> BeansException <span style="color:#f92672">{</span>
+  <span style="color:#75715e">// javax.servlet.ServletContext
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>getServletContext<span style="color:#f92672">()</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> bean <span style="color:#66d9ef">instanceof</span> ServletContextAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>ServletContextAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setServletContext</span><span style="color:#f92672">(</span>getServletContext<span style="color:#f92672">());</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#75715e">// javax.servlet.ServletConfig
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>getServletConfig<span style="color:#f92672">()</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> bean <span style="color:#66d9ef">instanceof</span> ServletConfigAware<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">((</span>ServletConfigAware<span style="color:#f92672">)</span> bean<span style="color:#f92672">).</span><span style="color:#a6e22e">setServletConfig</span><span style="color:#f92672">(</span>getServletConfig<span style="color:#f92672">());</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">return</span> bean<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="小结">小结</h2>
+<table>
+<thead>
+<tr>
+<th>执行顺序</th>
+<th>简介</th>
+<th>模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. BeanNameAware</td>
+<td>获取 Bean 的名称</td>
+<td>spring-beans</td>
+</tr>
+<tr>
+<td>2. BeanClassLoaderAware</td>
+<td>获取 Bean 的 ClassLoader</td>
+<td>spring-beans</td>
+</tr>
+<tr>
+<td>3. <strong>BeanFactoryAware</strong></td>
+<td>获取 <code>BeanFactory</code> 容器</td>
+<td>spring-beans</td>
+</tr>
+<tr>
+<td>4. <strong>EnvironmentAware</strong></td>
+<td>获取 Environment</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>5. EmbeddedValueResolverAware</td>
+<td>获取 配置信息</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>6. ResourceLoaderAware</td>
+<td>获取 ResourceLoader，加载扫描资源</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>7. <strong>ApplicationEventPublisherAware</strong></td>
+<td>获取 事件发布器</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>8. MessageSourceAware</td>
+<td>获取 <code>MessageSource</code>，处理国际化</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>9. <strong>ApplicationContextAware</strong></td>
+<td>获取 <code>ApplicationContext</code> 容器</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>10. <strong>ServletContextAware</strong></td>
+<td>获取 <code>ServletContext</code> Web 容器</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>11. <strong>ServletConfigAware</strong></td>
+<td>获取 Servlet 配置信息</td>
+<td>spring-contxt</td>
+</tr>
+<tr>
+<td>12. ImportAware</td>
+<td>获取注解配置</td>
+<td>spring-contxt</td>
+</tr>
+</tbody>
+</table>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/edit/master/HuGo/content/docs/spring-beans/Aware.md" target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+<script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#beansfactoryaware">beans.factory.Aware</a>
+      <ul>
+        <li><a href="#常用-aware-简介">常用 Aware 简介</a>
+          <ul>
+            <li><a href="#contextsupportapplicationcontextawareprocessor">context.support.ApplicationContextAwareProcessor</a></li>
+            <li><a href="#factorysupportabstractautowirecapablebeanfactory">factory.support.AbstractAutowireCapableBeanFactory</a></li>
+            <li><a href="#since-31-contextannotationimportaware">@since 3.1 context.annotation.ImportAware</a></li>
+            <li><a href="#webcontextsupportservletcontextawareprocessor">web.context.support.ServletContextAwareProcessor</a></li>
+          </ul>
+        </li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

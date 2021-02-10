@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="InitializingBean // TODO 定义在 spring Bean 初始化后 所做的操作方式 常见有三种：
+ @PostConstruct 注解 Bean 实现 InitializingBean 接口 在 xml 中 bean 标签 配置 init-method 属性 指定初始化方法  package org.springframework.beans.factory; /** * Interface to be implemented by beans that need to react once all their * properties have been set by a BeanFactory: for example, to perform custom * initialization, or merely to check that all mandatory properties have been set. * * &lt;p&gt;An alternative to implementing InitializingBean is specifying a custom * init-method, for example in an XML bean definition."><meta property="og:title" content="" />
+<meta property="og:description" content="InitializingBean // TODO 定义在 spring Bean 初始化后 所做的操作方式 常见有三种：
+ @PostConstruct 注解 Bean 实现 InitializingBean 接口 在 xml 中 bean 标签 配置 init-method 属性 指定初始化方法  package org.springframework.beans.factory; /** * Interface to be implemented by beans that need to react once all their * properties have been set by a BeanFactory: for example, to perform custom * initialization, or merely to check that all mandatory properties have been set. * * &lt;p&gt;An alternative to implementing InitializingBean is specifying a custom * init-method, for example in an XML bean definition." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/InitializingBean/" />
+
+<title>Initializing Bean | Spring-Beans</title>
+<link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Beans/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/Spring-Beans"><span>Spring-Beans</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Lifecycle/">生命周期</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory/">BeanFactory</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory.getBean/">BeanFactory.getBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/">StaticListable<strong>BeanFactory</strong></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/FactoryBean/">FactoryBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/">BeanFactoryPostProcessor</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanPostProcessor/">BeanPostProcessor</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Aware/">Aware</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/InitializingBean/"class=active>InitializingBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/DisposableBean/">DisposableBean</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/Spring-Beans/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Initializing Bean</strong>
+
+  <label for="toc-control">
+    <img src="/Spring-Beans/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#initializingbean--todo">InitializingBean // TODO</a>
+      <ul>
+        <li><a href="#read-more">Read More</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="initializingbean--todo">InitializingBean // TODO</h1>
+<p>定义在 spring Bean 初始化后 所做的操作方式 常见有三种：</p>
+<ol>
+<li><code>@PostConstruct</code> 注解</li>
+<li>Bean 实现 <code>InitializingBean</code> 接口</li>
+<li>在 xml 中 bean 标签 配置  <code>init-method</code> 属性 指定初始化方法</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.springframework.beans.factory<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Interface to be implemented by beans that need to react once all their
+</span><span style="color:#75715e"> * properties have been set by a BeanFactory: for example, to perform custom
+</span><span style="color:#75715e"> * initialization, or merely to check that all mandatory properties have been set.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * &lt;p&gt;An alternative to implementing InitializingBean is specifying a custom
+</span><span style="color:#75715e"> * init-method, for example in an XML bean definition.
+</span><span style="color:#75715e"> * For a list of all bean lifecycle methods, see the BeanFactory javadocs.
+</span><span style="color:#75715e"> *
+</span><span style="color:#75715e"> * @see BeanNameAware
+</span><span style="color:#75715e"> * @see BeanFactoryAware
+</span><span style="color:#75715e"> * @see BeanFactory
+</span><span style="color:#75715e"> * @see org.springframework.beans.factory.support.RootBeanDefinition#getInitMethodName
+</span><span style="color:#75715e"> * @see org.springframework.context.ApplicationContextAware
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InitializingBean</span> <span style="color:#f92672">{</span>
+
+	<span style="color:#75715e">/**
+</span><span style="color:#75715e">	 * Invoked by a BeanFactory after it has set all bean properties supplied
+</span><span style="color:#75715e">	 * (and satisfied BeanFactoryAware and ApplicationContextAware).
+</span><span style="color:#75715e">	 * &lt;p&gt;This method allows the bean instance to perform initialization only
+</span><span style="color:#75715e">	 * possible when all bean properties have been set and to throw an
+</span><span style="color:#75715e">	 * exception in the event of misconfiguration.
+</span><span style="color:#75715e">	 * @throws Exception in the event of misconfiguration (such
+</span><span style="color:#75715e">	 * as failure to set an essential property) or if initialization fails.
+</span><span style="color:#75715e">	 */</span>
+	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">afterPropertiesSet</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h2 id="read-more">Read More</h2>
+<ul>
+<li>
+  <a href="http://sexycoding.iteye.com/blog/1046993">源码解析：init-method、@PostConstruct、afterPropertiesSet孰先孰后</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/edit/master/HuGo/content/docs/spring-beans/InitializingBean.md" target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+<script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#initializingbean--todo">InitializingBean // TODO</a>
+      <ul>
+        <li><a href="#read-more">Read More</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

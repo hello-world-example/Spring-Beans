@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bean 的生命周期  译自 —— Spring Bean Life Cycle
+ Bean 的生命周期是 Spring 最重要的特性之一。
+在许多应用中，必须在初始化bean之前执行一些操作，并且在容器销毁 bean 之前执行一些清理操作。
+在 Java 中 对象的生命周期 由 new 关键字开始。当我们使用 new 创建一个对象时，它会根据类的层析结构调用一系列的构造函数，最后使对象可用。当这个对象没有任何引用时，它将被垃圾收集。 这是Java中对象的生命周期。
+但在 Spring 中 Bean 的生命周期还有很多事情要做。下面展示的是 Spring Bean 的生命周期图：
+  Spring容器在 xml配置文件中(注解扫描、配置Bean 等) 查找bean的定义 通过调用 Class 的默认 无参数构造函数 来实例化 Bean；如果类中只有参数化构造函数，则必须在使用构造函数注入定义bean，否则将抛出bean创建异常。 Spring 将 值 或者 引用 注入到 Bean 的实例中 如果 Bean 实现 BeanNameAware 接口，Spring 会将 bean的ID 传递给 setBeanName() 方法并执行此方法。 如果 Bean 实现 BeanFactoryAware 接口，Spring 将会调用 setBeanFactory() 方法，传入 Bean 工厂 BeanFactory 的实例 如果 Bean 实现 ApplicationContextAware  接口，Spring 将会调用 setApplicationContext() 方法，创建当前应用上下问的引用 ApplicationContext 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessBeforeInitialization() 方法；@PostConstruct 注解的方法也会在这一步执行 如果 Bean 实现 InitializingBean 接口，Spring 将会 在设置完 Bean 的所有属性后 调用 afterPropertiesSet() 方法；类似地，如果使用 init-method 方法声明bean，则将调用指定的初始化方法 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessAfterInitialization() 方法， 此时，bean已准备好由应用程序使用，并将保留在应用程序上下文中，直到销毁应用程序上下文。 如果 Bean 实现 DisposableBean 接口，Spring 将会在容器销毁的时候 调用 destroy() 方法；同样，如果使用 destroy-method 声明任何bean，则将调用指定的方法。  生命周期之前  容器启动时最先调用 org."><meta property="og:title" content="" />
+<meta property="og:description" content="Bean 的生命周期  译自 —— Spring Bean Life Cycle
+ Bean 的生命周期是 Spring 最重要的特性之一。
+在许多应用中，必须在初始化bean之前执行一些操作，并且在容器销毁 bean 之前执行一些清理操作。
+在 Java 中 对象的生命周期 由 new 关键字开始。当我们使用 new 创建一个对象时，它会根据类的层析结构调用一系列的构造函数，最后使对象可用。当这个对象没有任何引用时，它将被垃圾收集。 这是Java中对象的生命周期。
+但在 Spring 中 Bean 的生命周期还有很多事情要做。下面展示的是 Spring Bean 的生命周期图：
+  Spring容器在 xml配置文件中(注解扫描、配置Bean 等) 查找bean的定义 通过调用 Class 的默认 无参数构造函数 来实例化 Bean；如果类中只有参数化构造函数，则必须在使用构造函数注入定义bean，否则将抛出bean创建异常。 Spring 将 值 或者 引用 注入到 Bean 的实例中 如果 Bean 实现 BeanNameAware 接口，Spring 会将 bean的ID 传递给 setBeanName() 方法并执行此方法。 如果 Bean 实现 BeanFactoryAware 接口，Spring 将会调用 setBeanFactory() 方法，传入 Bean 工厂 BeanFactory 的实例 如果 Bean 实现 ApplicationContextAware  接口，Spring 将会调用 setApplicationContext() 方法，创建当前应用上下问的引用 ApplicationContext 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessBeforeInitialization() 方法；@PostConstruct 注解的方法也会在这一步执行 如果 Bean 实现 InitializingBean 接口，Spring 将会 在设置完 Bean 的所有属性后 调用 afterPropertiesSet() 方法；类似地，如果使用 init-method 方法声明bean，则将调用指定的初始化方法 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessAfterInitialization() 方法， 此时，bean已准备好由应用程序使用，并将保留在应用程序上下文中，直到销毁应用程序上下文。 如果 Bean 实现 DisposableBean 接口，Spring 将会在容器销毁的时候 调用 destroy() 方法；同样，如果使用 destroy-method 声明任何bean，则将调用指定的方法。  生命周期之前  容器启动时最先调用 org." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/" />
+
+<title>Lifecycle | Spring-Beans</title>
+<link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="/Spring-Beans/book.min.d436f463c9471cfab26a8b71cd2f50b6abf5225806391453da4ca111d1834fef.css" integrity="sha256-1Db0Y8lHHPqyaotxzS9Qtqv1IlgGORRT2kyhEdGDT&#43;8=">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" class="hidden" id="menu-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  <nav>
+<h2 class="book-brand">
+  <a href="/Spring-Beans"><span>Spring-Beans</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Lifecycle/"class=active>生命周期</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory/">BeanFactory</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactory.getBean/">BeanFactory.getBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/">StaticListable<strong>BeanFactory</strong></a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/FactoryBean/">FactoryBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/">BeanFactoryPostProcessor</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/BeanPostProcessor/">BeanPostProcessor</a>
+<ul>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/Aware/">Aware</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/InitializingBean/">InitializingBean</a></li>
+<li>
+  <a href="/Spring-Beans/docs/spring-beans/DisposableBean/">DisposableBean</a></li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/Spring-Beans/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Lifecycle</strong>
+
+  <label for="toc-control">
+    <img src="/Spring-Beans/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+  </label>
+</div>
+
+
+  
+    <input type="checkbox" class="hidden" id="toc-control" />
+    <aside class="hidden clearfix">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#bean-的生命周期">Bean 的生命周期</a>
+      <ul>
+        <li><a href="#生命周期之前">生命周期之前</a></li>
+        <li><a href="#see">@See</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+    </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="bean-的生命周期">Bean 的生命周期</h1>
+<blockquote>
+<p>译自 —— 
+  <a href="http://javainsimpleway.com/spring-bean-life-cycle/">Spring Bean Life Cycle</a></p>
+</blockquote>
+<p>Bean 的生命周期是 Spring 最重要的特性之一。</p>
+<p>在许多应用中，必须在初始化bean之前执行一些操作，并且在容器销毁 bean 之前执行一些清理操作。</p>
+<p>在 Java 中 对象的生命周期 由 <code>new</code> 关键字开始。当我们使用 <code>new</code> 创建一个对象时，它会根据类的层析结构调用一系列的构造函数，最后使对象可用。当这个对象没有任何引用时，它将被垃圾收集。 这是Java中对象的生命周期。</p>
+<p>但在 Spring 中 Bean 的生命周期还有很多事情要做。下面展示的是 Spring Bean 的生命周期图：</p>
+<p>
+  <img src="../Lifecycle.assets/image-20200301182149931.png" alt="image-20200301182149931" /></p>
+<ol>
+<li>Spring容器在 xml配置文件中(注解扫描、配置Bean 等) 查找bean的定义</li>
+<li>通过调用 Class 的默认 无参数构造函数 来实例化 Bean；如果类中只有参数化构造函数，则必须在使用构造函数注入定义bean，否则将抛出bean创建异常。</li>
+<li>Spring 将 值 或者 引用 注入到 Bean 的实例中</li>
+<li>如果 Bean 实现 <code>BeanNameAware</code> 接口，Spring 会将 bean的ID 传递给 <code>setBeanName()</code> 方法并执行此方法。</li>
+<li>如果 Bean 实现 <code>BeanFactoryAware</code> 接口，Spring 将会调用 <code>setBeanFactory()</code> 方法，传入 Bean 工厂 <code>BeanFactory</code> 的实例</li>
+<li>如果 Bean 实现 <code>ApplicationContextAware </code> 接口，Spring 将会调用 <code>setApplicationContext()</code> 方法，创建当前应用上下问的引用 <code>ApplicationContext</code></li>
+<li>如果 Bean 实现 <code>BeanPostProcessor</code> 接口，Spring 将会调用 <code>postProcessBeforeInitialization()</code> 方法；<code>@PostConstruct</code> 注解的方法也会在这一步执行</li>
+<li>如果 Bean 实现 <code>InitializingBean</code> 接口，Spring 将会 在设置完 Bean 的所有属性后 调用 <code>afterPropertiesSet()</code> 方法；类似地，如果使用 <code>init-method</code> 方法声明bean，则将调用指定的初始化方法</li>
+<li>如果 Bean 实现 <code>BeanPostProcessor</code> 接口，Spring 将会调用 <code>postProcessAfterInitialization()</code> 方法，</li>
+<li>此时，bean已准备好由应用程序使用，并将保留在应用程序上下文中，直到销毁应用程序上下文。</li>
+<li>如果 Bean 实现 <code>DisposableBean</code> 接口，Spring 将会在容器销毁的时候 调用 <code>destroy()</code> 方法；同样，如果使用 <code>destroy-method</code> 声明任何bean，则将调用指定的方法。</li>
+</ol>
+<h2 id="生命周期之前">生命周期之前</h2>
+<ol>
+<li>容器启动时最先调用 <code>org.springframework.beans.factory.config.BeanFactoryPostProcessor</code> # <code>postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)</code></li>
+<li>&hellip;</li>
+</ol>
+<h2 id="see">@See</h2>
+<ul>
+<li><code>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory</code> # <code>initializeBean</code></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/edit/master/HuGo/content/docs/spring-beans/Lifecycle.md" target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+<script>
+var images = document.getElementsByTagName("img")
+console.info(images.length)
+for(var i=0; i<images.length; i++){
+  var image = images[i]
+  var src = image.getAttribute("src");
+  if(src.startsWith("-images")){
+    image.setAttribute("src", "../" + src)
+  }
+}
+</script>
+
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#bean-的生命周期">Bean 的生命周期</a>
+      <ul>
+        <li><a href="#生命周期之前">生命周期之前</a></li>
+        <li><a href="#see">@See</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

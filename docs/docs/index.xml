@@ -1,13 +1,179 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docs on Template-Hugo</title>
-    <link>https://hello-world-example.github.io/Template-Hugo/docs/</link>
-    <description>Recent content in Docs on Template-Hugo</description>
+    <title>Docs on Spring-Beans</title>
+    <link>https://hello-world-example.github.io/Spring-Beans/docs/</link>
+    <description>Recent content in Docs on Spring-Beans</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="https://hello-world-example.github.io/Template-Hugo/docs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hello-world-example.github.io/Spring-Beans/docs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___AnnotatedBeanDefinition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___AnnotatedBeanDefinition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___BeanDefinition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___BeanDefinition/</guid>
+      <description>BeanDefinition  BeanDefinition  AnnotatedBeanDefinition  ScannedGenericBeanDefinition == AnnotatedGenericBeanDefinition ==   AbstractBeanDefinition  RootBeanDefinition ChildBeanDefinition GenericBeanDefinition  ScannedGenericBeanDefinition == AnnotatedGenericBeanDefinition ==        </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___DefaultSingletonBeanRegistry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___DefaultSingletonBeanRegistry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Aware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Aware/</guid>
+      <description>beans.factory.Aware Aware 是一个标记接口，没有任何方法签名，在 Bean 的声明周期中，通过 BeanPostProcessor 给 Bean 传入声明周期过程中的对象
+/** * @link org.springframework.beans.factory.config.BeanPostProcessor * @link org.springframework.context.support.ApplicationContextAwareProcessor * @since 3.1 */ public interface Aware { } 常用 Aware 简介 context.support.ApplicationContextAwareProcessor ApplicationContextAwareProcessor 处理以下 Aware
+ EnvironmentAware ： 设置 Environment （ConfigurableEnvironment） EmbeddedValueResolverAware ： 设置 StringValueResolver（EmbeddedValueResolver） ResourceLoaderAware ： 设置 ResourceLoaderAware（ConfigurableApplicationContext） ApplicationEventPublisherAware ： 设置 ApplicationEventPublisher（ConfigurableApplicationContext） MessageSourceAware ： 设置 MessageSourceAware（ConfigurableApplicationContext） ApplicationContextAware ： 设置 ApplicationContext（ConfigurableApplicationContext）  private void invokeAwareInterfaces(Object bean) { // env 和 系统属性  if (bean instanceof EnvironmentAware) { ((EnvironmentAware) bean).</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory.getBean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory.getBean/</guid>
+      <description>BeanFactory#getBean 继承关系 Interface  BeanFactory (org.springframework.beans.factory)  HierarchicalBeanFactory (org.springframework.beans.factory)  ConfigurableBeanFactory (org.springframework.beans.factory.config)  AbstractBeanFactory (org.springframework.beans.factory.support)        Class  SimpleAliasRegistry (org.springframework.core)  DefaultSingletonBeanRegistry (org.springframework.beans.factory.support)  FactoryBeanRegistrySupport (org.springframework.beans.factory.support)  AbstractBeanFactory (org.springframework.beans.factory.support)  AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)  DefaultListableBeanFactory (org.springframework.beans.factory.support)  XmlBeanFactory (org.springframework.beans.factory.xml)              getBean 的大部分逻辑由 AbstractBeanFactory 实现，大多 getBean 方式都是 doGetBean 的重载方法。
+AbstractBeanFactory#doGetBean protected &amp;lt;T&amp;gt; T doGetBean(final String name, @Nullable final Class&amp;lt;T&amp;gt; requiredType, @Nullable final Object[] args, boolean typeCheckOnly ) throws BeansException { // 1.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory/</guid>
+      <description>BeanFactory BeanFactory 是个 工厂，也就是 IOC 容器 或 对象工厂 ，所有的 Bean 都是由 BeanFactory( 也就是 IOC 容器 ) 来进行管理。
+BeanFactory定义了 IOC 容器的最基本形式，并提供了 IOC 容器应遵守的的最基本的接口，也就是 Spring IOC 所遵守的最底层和最基本的编程规范。
+public interface BeanFactory { // FactoryBean前缀  String FACTORY_BEAN_PREFIX = &amp;#34;&amp;amp;&amp;#34;; // 根据名称获取Bean对象  Object getBean(String name) throws BeansException; // 根据名称、类型获取Bean对象  &amp;lt;T&amp;gt; T getBean(String name, Class&amp;lt;T&amp;gt; requiredType) throws BeansException; // 根据类型获取Bean对象  &amp;lt;T&amp;gt; T getBean(Class&amp;lt;T&amp;gt; requiredType) throws BeansException; // 根据名称获取Bean对象,带参数  Object getBean(String name, Object.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/</guid>
+      <description>BeanFactoryPostProcessor 在实例化所有Bean之前会执行 BeanFactoryPostProcessors，实现该接口，可以在 Spring 的 Bean 创建之前，修改 Bean的定义属性 等 // TODO “还有什么功能”
+package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * Allows for custom modification of an application context&amp;#39;s bean definitions, * adapting the bean property values of the context&amp;#39;s underlying bean factory. * * &amp;lt;p&amp;gt;Application contexts can auto-detect BeanFactoryPostProcessor beans in * their bean definitions and apply them before any other beans get created. * * &amp;lt;p&amp;gt;Useful for custom config files targeted at system administrators that * override bean properties configured in the application context.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanPostProcessor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanPostProcessor/</guid>
+      <description>BeanPostProcessor BeanPostProcessor 提供对bean实例的操作扩展，在 Spring容器 对 bean实例化 和 设置依赖 之后，其回调开始执行。BeanPostProcessor 接口定义的两个方法，分别在 bean的初始化方法执行的前后执行（ InitializingBean 接口，或者 init-method 定义的方法）：
+package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * 用来自定义创建的 Bean，如：检查 Bean 的注解 或 用代理类进行包装 等 * * postProcessBeforeInitialization 一般用来检查bean的注解 或者 填充 bean * postProcessAfterInitialization 一般用来代理类来包装 bean * * @see InstantiationAwareBeanPostProcessor * @see DestructionAwareBeanPostProcessor * @see ConfigurableBeanFactory#addBeanPostProcessor * @see BeanFactoryPostProcessor */ public interface BeanPostProcessor { /** * 在bean的初始化方法执行 前 执行 * * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet */ Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException; /** * 在bean的初始化方法执行 后 执行 * * @see org.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/DisposableBean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/DisposableBean/</guid>
+      <description>DisposableBean // TODO 定义在 spring 容器 销毁前 所做的操作方式 常见有三种：
+ @PreDestroy 注解 在 xml 中 bean 标签 配置 destory-method 属性 指定销毁方法 Bean 实现 DisposableBean 接口  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/FactoryBean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/FactoryBean/</guid>
+      <description>FactoryBean FactoryBean 是一个 Bean，但不是一个简单的Bean，是一个能生产对象的 Bean 😓
+接口如下：
+package org.springframework.beans.factory; public interface FactoryBean&amp;lt;T&amp;gt; { // FactoryBean 创建的 Bean 实例  T getObject() throws Exception; // 返回 FactoryBean 创建的 Bean 类型  Class&amp;lt;?&amp;gt; getObjectType(); // 返回由 FactoryBean 创建的 Bean 实例的作用域是 singleton 还是 prototype  boolean isSingleton(); } 使用示例 User.java package xyz.kail.blog.spring; public class User { public String name; } UserFactoryBean.java package xyz.kail.blog.spring; import org.springframework.beans.factory.FactoryBean; import org.springframework.stereotype.Component; @Component(&amp;#34;user&amp;#34;) public class UserFactoryBean implements FactoryBean&amp;lt;User&amp;gt; { @Override public User getObject() throws Exception { User user = new User(); user.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/InitializingBean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/InitializingBean/</guid>
+      <description>InitializingBean // TODO 定义在 spring Bean 初始化后 所做的操作方式 常见有三种：
+ @PostConstruct 注解 Bean 实现 InitializingBean 接口 在 xml 中 bean 标签 配置 init-method 属性 指定初始化方法  package org.springframework.beans.factory; /** * Interface to be implemented by beans that need to react once all their * properties have been set by a BeanFactory: for example, to perform custom * initialization, or merely to check that all mandatory properties have been set. * * &amp;lt;p&amp;gt;An alternative to implementing InitializingBean is specifying a custom * init-method, for example in an XML bean definition.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/</guid>
+      <description>Bean 的生命周期  译自 —— Spring Bean Life Cycle
+ Bean 的生命周期是 Spring 最重要的特性之一。
+在许多应用中，必须在初始化bean之前执行一些操作，并且在容器销毁 bean 之前执行一些清理操作。
+在 Java 中 对象的生命周期 由 new 关键字开始。当我们使用 new 创建一个对象时，它会根据类的层析结构调用一系列的构造函数，最后使对象可用。当这个对象没有任何引用时，它将被垃圾收集。 这是Java中对象的生命周期。
+但在 Spring 中 Bean 的生命周期还有很多事情要做。下面展示的是 Spring Bean 的生命周期图：
+  Spring容器在 xml配置文件中(注解扫描、配置Bean 等) 查找bean的定义 通过调用 Class 的默认 无参数构造函数 来实例化 Bean；如果类中只有参数化构造函数，则必须在使用构造函数注入定义bean，否则将抛出bean创建异常。 Spring 将 值 或者 引用 注入到 Bean 的实例中 如果 Bean 实现 BeanNameAware 接口，Spring 会将 bean的ID 传递给 setBeanName() 方法并执行此方法。 如果 Bean 实现 BeanFactoryAware 接口，Spring 将会调用 setBeanFactory() 方法，传入 Bean 工厂 BeanFactory 的实例 如果 Bean 实现 ApplicationContextAware  接口，Spring 将会调用 setApplicationContext() 方法，创建当前应用上下问的引用 ApplicationContext 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessBeforeInitialization() 方法；@PostConstruct 注解的方法也会在这一步执行 如果 Bean 实现 InitializingBean 接口，Spring 将会 在设置完 Bean 的所有属性后 调用 afterPropertiesSet() 方法；类似地，如果使用 init-method 方法声明bean，则将调用指定的初始化方法 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessAfterInitialization() 方法， 此时，bean已准备好由应用程序使用，并将保留在应用程序上下文中，直到销毁应用程序上下文。 如果 Bean 实现 DisposableBean 接口，Spring 将会在容器销毁的时候 调用 destroy() 方法；同样，如果使用 destroy-method 声明任何bean，则将调用指定的方法。  生命周期之前  容器启动时最先调用 org.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s01.BeanNameAware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s01.BeanNameAware/</guid>
+      <description>BeanNameAware 作用是 让Bean获取自己在BeanFactory中的 ID/Name。
+Spring 会在完成 Bean 属性设置之后自动调用 setBeanName() 方法，且在调用 Bean 生命周期回调方法之前就调用这个方法。
+package org.springframework.beans.factory; /** * @see BeanClassLoaderAware * @see BeanFactoryAware * @see InitializingBean */ public interface BeanNameAware extends Aware { void setBeanName(String name); } 常见的实现：
+@Override public void setBeanName(String beanName) { this.beanName = StringUtils.trimAllWhitespace(BeanFactoryUtils.originalBeanName(beanName)); } </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s02.BeanFactoryAware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s02.BeanFactoryAware/</guid>
+      <description>BeanFactoryAware // TODO 作用是 让Bean获取配置它们的BeanFactory的引用
+// TODO
+package org.springframework.beans.factory; import org.springframework.beans.BeansException; /** * Interface to be implemented by beans that wish to be aware of their * owning {@link BeanFactory}. * * &amp;lt;p&amp;gt;For example, beans can look up collaborating beans via the factory * (Dependency Lookup). Note that most beans will choose to receive references * to collaborating beans via corresponding bean properties or constructor * arguments (Dependency Injection). * * &amp;lt;p&amp;gt;For a list of all bean lifecycle methods, see the * {@link BeanFactory BeanFactory javadocs}.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s03.ApplicationContextAware/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s03.ApplicationContextAware/</guid>
+      <description>// TODO</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/</guid>
+      <description>StaticListableBeanFactory BeanFactory 的最简单的实现类，仅仅是一个 Bean 的容器，继承关系简单，可以用来理解 BeanFactory。
+ BeanFactory (org.springframework.beans.factory)  ListableBeanFactory (org.springframework.beans.factory)  StaticListableBeanFactory (org.springframework.beans.factory.support)      Read More   StaticListableBeanFactory 分析  </description>
+    </item>
     
   </channel>
 </rss>
