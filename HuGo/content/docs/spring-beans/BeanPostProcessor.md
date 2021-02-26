@@ -1,6 +1,10 @@
 # BeanPostProcessor
 
-`BeanPostProcessor` 提供对bean实例的操作扩展，**在 Spring容器 对 bean实例化 和 设置依赖 之后**，其回调开始执行。`BeanPostProcessor` 接口定义的两个方法，分别在 **bean的初始化方法执行的前后执行**（ `InitializingBean` 接口，或者 `init-method` 定义的方法）：
+`BeanPostProcessor` 提供对 bean 实例的操作扩展，**在 Spring容器 对 bean实例化 和 设置依赖 之后**，其回调开始执行。
+
+`BeanPostProcessor` 接口定义的两个方法，分别在 **bean的初始化方法执行的前后执行**（ `InitializingBean` 接口，或者 `init-method` 定义的方法）：
+
+
 
 ```java
 package org.springframework.beans.factory.config;
@@ -38,11 +42,16 @@ public interface BeanPostProcessor {
 }
 ```
 
-JSR注解 `@PostConstruct` 的处理就是使用`BeanPostProcessor`。它的另外一个较常见的使用场景是 spring-aop动态代理 
+JSR注解 `@PostConstruct` 的处理就是使用 `BeanPostProcessor`。它的另外一个较常见的使用场景是 spring-aop 动态代理 
+
+
 
 ## @PostConstruct
 
-默认情况下，Spring不会意识到`@PostConstruct`和 `@PreDestroy`注解。要启用它，要么注册`<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />`，要么开启 Spring 的注解扫描功能 `<context:annotation-config />` 
+默认情况下，Spring 不会失败到 `@PostConstruct`和 `@PreDestroy`注解。要启用它，
+
+- 要么注册 `<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />`
+- 要么开启 Spring 的注解扫描功能 `<context:annotation-config />` 
 
 
 

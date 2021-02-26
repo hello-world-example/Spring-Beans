@@ -1,1 +1,0 @@
-package xyz.kail.demo.spring.beans;
