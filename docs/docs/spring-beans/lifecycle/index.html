@@ -18,7 +18,7 @@
   Spring容器在 xml配置文件中(注解扫描、配置Bean 等) 查找bean的定义 通过调用 Class 的默认 无参数构造函数 来实例化 Bean；如果类中只有参数化构造函数，则必须在使用构造函数注入定义bean，否则将抛出bean创建异常。 Spring 将 值 或者 引用 注入到 Bean 的实例中 如果 Bean 实现 BeanNameAware 接口，Spring 会将 bean的ID 传递给 setBeanName() 方法并执行此方法。 如果 Bean 实现 BeanFactoryAware 接口，Spring 将会调用 setBeanFactory() 方法，传入 Bean 工厂 BeanFactory 的实例 如果 Bean 实现 ApplicationContextAware  接口，Spring 将会调用 setApplicationContext() 方法，创建当前应用上下问的引用 ApplicationContext 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessBeforeInitialization() 方法；@PostConstruct 注解的方法也会在这一步执行 如果 Bean 实现 InitializingBean 接口，Spring 将会 在设置完 Bean 的所有属性后 调用 afterPropertiesSet() 方法；类似地，如果使用 init-method 方法声明bean，则将调用指定的初始化方法 如果 Bean 实现 BeanPostProcessor 接口，Spring 将会调用 postProcessAfterInitialization() 方法， 此时，bean已准备好由应用程序使用，并将保留在应用程序上下文中，直到销毁应用程序上下文。 如果 Bean 实现 DisposableBean 接口，Spring 将会在容器销毁的时候 调用 destroy() 方法；同样，如果使用 destroy-method 声明任何bean，则将调用指定的方法。  生命周期之前  容器启动时最先调用 org." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/" />
-
+<meta property="article:modified_time" content="2021-02-10T11:07:00+08:00" />
 <title>Lifecycle | Spring-Beans</title>
 <link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
 
@@ -189,6 +189,14 @@ https://github.com/alex-shpak/hugo-book
 
 
 
+  <div>
+    
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/commit/c4d7e3d1cb14fdc3fb2800ea8ca95d9f359fe189" title='Last modified by kaibin.yang | Feb 10, 2021' target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Feb 10, 2021</span>
+    </a>
+  </div>
+
 
 
   <div>
@@ -201,8 +209,7 @@ https://github.com/alex-shpak/hugo-book
 </div>
 
  
-        
-<script>
+        <script>
 var images = document.getElementsByTagName("img")
 console.info(images.length)
 for(var i=0; i<images.length; i++){

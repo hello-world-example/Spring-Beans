@@ -12,7 +12,7 @@ BeanFactory定义了 IOC 容器的最基本形式，并提供了 IOC 容器应�
 public interface BeanFactory { // FactoryBean前缀  String FACTORY_BEAN_PREFIX = &#34;&amp;&#34;; // 根据名称获取Bean对象  Object getBean(String name) throws BeansException; // 根据名称、类型获取Bean对象  &lt;T&gt; T getBean(String name, Class&lt;T&gt; requiredType) throws BeansException; // 根据类型获取Bean对象  &lt;T&gt; T getBean(Class&lt;T&gt; requiredType) throws BeansException; // 根据名称获取Bean对象,带参数  Object getBean(String name, Object." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory/" />
-
+<meta property="article:modified_time" content="2021-02-10T11:07:00+08:00" />
 <title>Bean Factory | Spring-Beans</title>
 <link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
 
@@ -201,6 +201,14 @@ https://github.com/alex-shpak/hugo-book
 
 
 
+  <div>
+    
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/commit/c4d7e3d1cb14fdc3fb2800ea8ca95d9f359fe189" title='Last modified by kaibin.yang | Feb 10, 2021' target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Feb 10, 2021</span>
+    </a>
+  </div>
+
 
 
   <div>
@@ -213,8 +221,7 @@ https://github.com/alex-shpak/hugo-book
 </div>
 
  
-        
-<script>
+        <script>
 var images = document.getElementsByTagName("img")
 console.info(images.length)
 for(var i=0; i<images.length; i++){

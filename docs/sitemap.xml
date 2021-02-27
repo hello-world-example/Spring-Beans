@@ -4,71 +4,97 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/_sidebar/</loc>
-    <lastmod>2021-02-09T13:59:57+08:00</lastmod>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___AnnotatedBeanDefinition/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___BeanDefinition/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/___DefaultSingletonBeanRegistry/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Aware/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory.getBean/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactory/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanFactoryPostProcessor/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanPostProcessor/</loc>
+    <lastmod>2021-02-26T11:50:31+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/DisposableBean/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/FactoryBean/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/InitializingBean/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/Lifecycle/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s01.BeanNameAware/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s02.BeanFactoryAware/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/lifecycle/s03.ApplicationContextAware/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/</loc>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Spring-Beans/docs/todo/BeanDefinitionBuilder/</loc>
+    <lastmod>2021-02-26T11:50:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://hello-world-example.github.io/Spring-Beans/docs/todo/BeanDefinitionRegistryPostProcessor/</loc>
+    <lastmod>2021-02-26T11:50:31+08:00</lastmod>
   </url>
   
   <url>
@@ -77,11 +103,12 @@
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/docs/</loc>
+    <lastmod>2021-02-26T11:50:31+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://hello-world-example.github.io/Spring-Beans/</loc>
-    <lastmod>2021-02-09T13:59:57+08:00</lastmod>
+    <lastmod>2021-02-10T11:07:00+08:00</lastmod>
   </url>
   
   <url>

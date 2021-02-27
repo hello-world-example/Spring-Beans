@@ -84,7 +84,8 @@ package org.springframework.beans.factory.config; import org.springframework.bea
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/BeanPostProcessor/</guid>
-      <description>BeanPostProcessor BeanPostProcessor 提供对bean实例的操作扩展，在 Spring容器 对 bean实例化 和 设置依赖 之后，其回调开始执行。BeanPostProcessor 接口定义的两个方法，分别在 bean的初始化方法执行的前后执行（ InitializingBean 接口，或者 init-method 定义的方法）：
+      <description>BeanPostProcessor BeanPostProcessor 提供对 bean 实例的操作扩展，在 Spring容器 对 bean实例化 和 设置依赖 之后，其回调开始执行。
+BeanPostProcessor 接口定义的两个方法，分别在 bean的初始化方法执行的前后执行（ InitializingBean 接口，或者 init-method 定义的方法）：
 package org.springframework.beans.factory.config; import org.springframework.beans.BeansException; /** * 用来自定义创建的 Bean，如：检查 Bean 的注解 或 用代理类进行包装 等 * * postProcessBeforeInitialization 一般用来检查bean的注解 或者 填充 bean * postProcessAfterInitialization 一般用来代理类来包装 bean * * @see InstantiationAwareBeanPostProcessor * @see DestructionAwareBeanPostProcessor * @see ConfigurableBeanFactory#addBeanPostProcessor * @see BeanFactoryPostProcessor */ public interface BeanPostProcessor { /** * 在bean的初始化方法执行 前 执行 * * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet */ Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException; /** * 在bean的初始化方法执行 后 执行 * * @see org.</description>
     </item>
     
@@ -173,6 +174,24 @@ package org.springframework.beans.factory; import org.springframework.beans.Bean
       <guid>https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/StaticListableBeanFactory/</guid>
       <description>StaticListableBeanFactory BeanFactory 的最简单的实现类，仅仅是一个 Bean 的容器，继承关系简单，可以用来理解 BeanFactory。
  BeanFactory (org.springframework.beans.factory)  ListableBeanFactory (org.springframework.beans.factory)  StaticListableBeanFactory (org.springframework.beans.factory.support)      Read More   StaticListableBeanFactory 分析  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/todo/BeanDefinitionBuilder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/todo/BeanDefinitionBuilder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hello-world-example.github.io/Spring-Beans/docs/todo/BeanDefinitionRegistryPostProcessor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hello-world-example.github.io/Spring-Beans/docs/todo/BeanDefinitionRegistryPostProcessor/</guid>
+      <description></description>
     </item>
     
   </channel>

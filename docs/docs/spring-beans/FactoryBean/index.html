@@ -12,7 +12,7 @@ package org.springframework.beans.factory; public interface FactoryBean&lt;T&gt;
 package org.springframework.beans.factory; public interface FactoryBean&lt;T&gt; { // FactoryBean 创建的 Bean 实例  T getObject() throws Exception; // 返回 FactoryBean 创建的 Bean 类型  Class&lt;?&gt; getObjectType(); // 返回由 FactoryBean 创建的 Bean 实例的作用域是 singleton 还是 prototype  boolean isSingleton(); } 使用示例 User.java package xyz.kail.blog.spring; public class User { public String name; } UserFactoryBean.java package xyz.kail.blog.spring; import org.springframework.beans.factory.FactoryBean; import org.springframework.stereotype.Component; @Component(&#34;user&#34;) public class UserFactoryBean implements FactoryBean&lt;User&gt; { @Override public User getObject() throws Exception { User user = new User(); user." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hello-world-example.github.io/Spring-Beans/docs/spring-beans/FactoryBean/" />
-
+<meta property="article:modified_time" content="2021-02-10T11:07:00+08:00" />
 <title>Factory Bean | Spring-Beans</title>
 <link rel="icon" href="/Spring-Beans/favicon.png" type="image/x-icon">
 
@@ -320,6 +320,14 @@ https://github.com/alex-shpak/hugo-book
 
 
 
+  <div>
+    
+    <a class="flex align-center" href="https://github.com/hello-world-example/Spring-Beans/commit/c4d7e3d1cb14fdc3fb2800ea8ca95d9f359fe189" title='Last modified by kaibin.yang | Feb 10, 2021' target="_blank" rel="noopener">
+      <img src="/Spring-Beans/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>Feb 10, 2021</span>
+    </a>
+  </div>
+
 
 
   <div>
@@ -332,8 +340,7 @@ https://github.com/alex-shpak/hugo-book
 </div>
 
  
-        
-<script>
+        <script>
 var images = document.getElementsByTagName("img")
 console.info(images.length)
 for(var i=0; i<images.length; i++){

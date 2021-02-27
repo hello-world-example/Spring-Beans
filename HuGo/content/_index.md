@@ -12,4 +12,8 @@ type: docs
   - [Spring-Jdbc 🔗](/Spring-Jdbc)
   - [Spring-WebMVC 🔗](/Spring-WebMVC)
   - [Spring-Test 🔗](/Mock/docs/spring-test/MockMvc/)
-  
+
+
+#### Draw.io
+
+- [Spring-BeanDefinition.drawio](https://app.diagrams.net/?#Uhttps://raw.githubusercontent.com/hello-world-example/Spring-Beans/master/demo-spring-draw/Spring-BeanDefinition.drawio)
